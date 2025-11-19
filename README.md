@@ -257,7 +257,7 @@ Academic Project - COMP3607
 - [DESIGN_PATTERNS.md](DESIGN_PATTERNS.md) - Design patterns documentation
 A multi-player Jeopardy game built in Java, supporting 1-4 players on a local device. It loads questions from CSV, JSON, or XML, tracks scores, logs interactions for process mining, and generates detailed reports. The project uses design patterns, SOLID principles, and includes automated JUnit tests for functionality.
 
-Features
+## Features
 
 Local multiplayer (1-4 players)
 
@@ -277,7 +277,7 @@ Follows SOLID principles for clean, maintainable code
 
 JUnit tests for core functionality
 
-Technologies
+## Technologies
 
 Java: Core game logic and UI
 
@@ -287,7 +287,7 @@ Maven: Build management
 
 CSV/JSON/XML: Supported file formats for question data
 
-Installation & Setup
+## Installation & Setup
 
 Clone the repository:
 
@@ -308,7 +308,7 @@ Run the game:
 
 mvn exec:java
 
-Usage
+## Usage
 
 Follow the on-screen prompts to select the number of players, load the game data, and begin playing.
 
@@ -316,11 +316,4 @@ Players take turns selecting categories and answering questions.
 
 At the end of the game, a summary report is generated, and a process mining log is saved.
 
-Contributing
 
-Feel free to fork this repository and submit pull requests. Please ensure any changes adhere to the project’s code structure and design principles.
-
-License
-
-This project is licensed under the MIT License – see the LICENSE
- file for details.
