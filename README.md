@@ -40,7 +40,7 @@ mvn -version
 ### Step 1: Clone the Repository
 ```bash
 git clone https://github.com/KaveeshRamsarran/COMP3607-Group-12.git
-cd COMP3607-Group-12/jeopardyproject
+cd COMP3607-Group-12\jeopardyproject\
 ```
 
 ### Step 2: Build the Project
