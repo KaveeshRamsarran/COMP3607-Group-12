@@ -72,7 +72,7 @@ A multi-player Jeopardy game built in Java, supporting 1-4 players on a local de
 
 Clone the repository:
 
-git clone https://github.com/your-username/jeopardy-game.git
+git clone https://github.com/your-username/COMP3607-Group12.git
 
 
 Navigate to the project directory:
