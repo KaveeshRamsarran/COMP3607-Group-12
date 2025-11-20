@@ -65,9 +65,7 @@ jeopardyproject/
 ├── SOLID_PRINCIPLES.md                       # SOLID documentation
 └── DESIGN_PATTERNS.md                        # Design patterns documentation
 ```
-## Additional Documentation
-- [SOLID_PRINCIPLES.md](SOLID_PRINCIPLES.md) - Detailed SOLID principles implementation
-- [DESIGN_PATTERNS.md](DESIGN_PATTERNS.md) - Design patterns documentation
+
 A multi-player Jeopardy game built in Java, supporting 1-4 players on a local device. It loads questions from CSV, JSON, or XML, tracks scores, logs interactions for process mining, and generates detailed reports. The project uses design patterns, SOLID principles, and includes automated JUnit tests for functionality.
 
 ## Installation & Setup
