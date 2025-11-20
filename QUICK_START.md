@@ -1,9 +1,21 @@
 # Quick Start Guide
 
+> For complete documentation, see [README.md](README.md)
+
 ## Prerequisites
-- Java 11 or higher installed
-- Maven 3.6 or higher installed
-- Git (for cloning repository)
+Before running the game, ensure you have:
+- **Java 11 or higher** ([Download Java](https://www.oracle.com/java/technologies/javase-downloads.html))
+- **Maven 3.6 or higher** ([Download Maven](https://maven.apache.org/download.cgi))
+- **Git** (to clone the repository)
+
+### Verify Installation
+```bash
+# Check Java version (should be 11 or higher)
+java -version
+
+# Check Maven version (should be 3.6 or higher)
+mvn -version
+```
 
 ## Installation
 
@@ -15,40 +27,54 @@ cd COMP3607-Group-12/jeopardyproject
 
 ### 2. Build Project
 ```bash
-mvn clean install
+# Clean, compile, and run tests
+mvn clean compile
+mvn test
+
+# Package the application
+mvn package
+```
+
+Expected output:
+```
+[INFO] BUILD SUCCESS
+[INFO] Tests run: 22, Failures: 0, Errors: 0, Skipped: 0
 ```
 
 ## Running the Application
 
-### Quick Run
+### Option 1: Using Maven (Recommended)
 ```bash
+# Windows PowerShell
+mvn exec:java '-Dexec.mainClass=com.comp3607.JeopardyApp'
+
+# Linux/Mac/Git Bash
 mvn exec:java -Dexec.mainClass="com.comp3607.JeopardyApp"
 ```
 
-### Alternative: Run from JAR
-```bash
-mvn package
-java -cp target/jeopardy-game-1.0-SNAPSHOT.jar com.comp3607.JeopardyApp
-```
+### Option 2: Using IDE
+- Open project in IntelliJ IDEA, Eclipse, or VS Code
+- Navigate to `src/main/java/com/comp3607/JeopardyApp.java`
+- Right-click and select "Run JeopardyApp.main()"
 
 ## Playing the Game
 
 ### Step 1: Load Questions
-When prompted, enter the file path to your questions file:
-```
-src/main/resources/data/sample_game_CSV.csv
-```
-Or use JSON or XML:
+When prompted, enter the file path:
 ```
 src/main/resources/data/sample_game_JSON.json
-src/main/resources/data/sample_game_XML.xml
 ```
 
-Then enter the file type:
+**Available sample files:**
+- `sample_game_CSV.csv`
+- `sample_game_JSON.json`
+- `sample_game_XML.xml`
+
+Output:
 ```
-csv
+Questions loaded successfully!
+Available categories: [Variables, Control Structures]
 ```
-(or `json` or `xml`)
 
 ### Step 2: Setup Players
 Enter number of players (1-4):
@@ -56,200 +82,170 @@ Enter number of players (1-4):
 2
 ```
 
-Enter player names when prompted:
+Enter player names:
 ```
 Enter name for Player 1: Alice
+Player Alice added successfully!
+
 Enter name for Player 2: Bob
+Player Bob added successfully!
 ```
 
-### Step 3: Play Game
+### Step 3: Play Turns
 For each turn:
-1. Select category (enter number)
-2. Select question value (enter number)
-3. Read the question
-4. Answer (enter A, B, C, or D)
-5. See if you're correct and your new score
+1. **Select category**: Type the category name (e.g., `Variables`)
+2. **Select value**: Choose point value (e.g., `200`)
+3. **Read question**: View question with 4 options (A, B, C, D)
+4. **Answer**: Enter your choice (A, B, C, or D)
+5. **View result**: See if correct and your new score
 
-To quit early, type `Q` when asked to play or quit.
+Example turn:
+```
+Available categories:
+1. Variables
+2. Control Structures
+
+Enter category: Variables
+
+Available values for Variables: [100, 200, 300]
+Enter question value: 200
+
+Question (200 points):
+What is a variable in programming?
+
+A. A type of loop
+B. A storage location with a name
+C. A function
+D. A class
+
+Enter your answer (A, B, C, or D): B
+✅ Correct! You earned 200 points.
+Current score: 200
+```
 
 ### Step 4: Generate Reports
-After the game ends, choose report format:
+After gameplay:
 ```
-Choose report format (txt/pdf/docx): txt
+Would you like to generate a summary report? (yes/no): yes
+
+Select report format (txt/pdf/docx): pdf
+
+Report generated: src/main/resources/reports/game_report.pdf
 ```
 
-Reports will be generated in:
-- `src/main/resources/reports/game_report.[format]`
-- `src/main/resources/reports/game_event_log.csv`
+### Step 5: Generate Process Mining Log
+```
+Would you like to generate the process mining log? (yes/no): yes
+
+Process mining log generated: src/main/resources/reports/game_event_log.csv
+```
 
 ## Running Tests
 
-### Run All Tests
 ```bash
+# Run all tests
 mvn test
-```
 
-### Run Specific Test
-```bash
+# Run specific test class
 mvn test -Dtest=GameTest
+
+# View test results
+# Reports are in: target/surefire-reports/
 ```
 
-### View Test Results
-Test reports are generated in:
+Expected output:
 ```
-target/surefire-reports/
-```
-
-## Sample Gameplay
-
-```
-=======================================
-  WELCOME TO JEOPARDY GAME!
-=======================================
-
-Enter the path to the questions file:
-src/main/resources/data/sample_game_CSV.csv
-
-Enter file type (csv/json/xml):
-csv
-
-Questions loaded successfully!
-
-How many players? (1-4):
-2
-
-Enter name for Player 1: Alice
-Enter name for Player 2: Bob
-
-Players registered:
-  - Alice
-  - Bob
-
-Game started! Let's play!
-
----------------------------------------
-Current Player: Alice
-Current Score: 0
----------------------------------------
-
-Do you want to (P)lay or (Q)uit? P
-
-Available Categories:
-1. Variables & Data Types
-2. Control Structures
-3. Functions & Methods
-
-Select category (1-3): 1
-
-Available Values:
-1. 100 points
-2. 200 points
-
-Select value (1-2): 1
-
-Category: Variables & Data Types | Value: 100 points
-Question: Which of the following declares an integer variable in C++?
-Options:
-  A. int num;
-  B. float num;
-  C. num int;
-  D. integer num;
-
-Your answer (A/B/C/D): A
-
-✓ CORRECT! +100 points
-New score: 100
+[INFO] Tests run: 22, Failures: 0, Errors: 0, Skipped: 0
+[INFO] BUILD SUCCESS
 ```
 
 ## Troubleshooting
 
-### Issue: "Cannot find Maven"
-**Solution**: Ensure Maven is installed and in your PATH
+### Common Issues & Solutions
+
+**"Cannot find Maven"**
 ```bash
-mvn --version
+mvn --version  # Check if Maven is installed and in PATH
 ```
 
-### Issue: "Java version error"
-**Solution**: Verify Java 11+ is installed
+**"Java version error"**
 ```bash
-java -version
+java -version  # Verify Java 11+ is installed
 ```
 
-### Issue: "File not found"
-**Solution**: Use absolute path or ensure you're in the correct directory
+**"File not found" when loading questions**
+- Use relative path: `src/main/resources/data/sample_game_JSON.json`
+- Or absolute path: `C:\Users\YourName\COMP3607-Group-12\jeopardyproject\src\main\resources\data\sample_game_JSON.json`
+
+**"BUILD FAILURE" during tests**
 ```bash
-# Use full path
-C:\Users\YourName\COMP3607-Group-12\jeopardyproject\src\main\resources\data\sample_game_CSV.csv
+mvn clean install -U  # Clean and rebuild with updated dependencies
 ```
 
-### Issue: "Tests failing"
-**Solution**: Ensure reports directory exists
+**"NoClassDefFoundError"**
 ```bash
-mkdir -p src/main/resources/reports
+# Use Maven to run (includes all dependencies)
+mvn exec:java '-Dexec.mainClass=com.comp3607.JeopardyApp'
 ```
 
-## Project Structure Quick Reference
+## Common Commands
+
+```bash
+# Build and compile
+mvn clean compile
+
+# Run tests
+mvn test
+
+# Package application
+mvn package
+
+# Run application (Windows PowerShell)
+mvn exec:java '-Dexec.mainClass=com.comp3607.JeopardyApp'
+
+# Run application (Linux/Mac/Git Bash)
+mvn exec:java -Dexec.mainClass="com.comp3607.JeopardyApp"
+
+# Clean build artifacts
+mvn clean
+```
+
+## Project Structure
 
 ```
 jeopardyproject/
 ├── src/main/
 │   ├── java/com/comp3607/        # Source code
 │   └── resources/
-│       ├── data/                 # Question files
+│       ├── data/                 # Sample question files
 │       └── reports/              # Generated reports
-├── src/test/                     # Test files
+├── src/test/                     # JUnit tests
 ├── target/                       # Build output
-└── pom.xml                       # Maven config
+└── pom.xml                       # Maven configuration
 ```
 
-## Common Commands
+## Additional Documentation
 
-```bash
-# Clean build
-mvn clean
+- **[README.md](README.md)** - Complete project documentation
+- **[DESIGN_PATTERNS.md](DESIGN_PATTERNS.md)** - Design patterns (80+ pages)
+- **[SOLID_PRINCIPLES.md](SOLID_PRINCIPLES.md)** - SOLID principles (60+ pages)
+- **[TESTING_GUIDE.md](TESTING_GUIDE.md)** - Testing instructions
+- **[PROJECT_SUMMARY.md](PROJECT_SUMMARY.md)** - Implementation summary
 
-# Compile
-mvn compile
+## Quick Start Checklist
 
-# Run tests
-mvn test
+- [ ] Install Java 11+ and Maven 3.6+
+- [ ] Clone repository
+- [ ] Build project: `mvn clean compile`
+- [ ] Run tests: `mvn test`
+- [ ] Run application: `mvn exec:java '-Dexec.mainClass=com.comp3607.JeopardyApp'`
+- [ ] Load sample file: `src/main/resources/data/sample_game_JSON.json`
+- [ ] Play a game
+- [ ] Generate reports
+- [ ] Check event log
 
-# Package JAR
-mvn package
+**Need help?** See the full [README.md](README.md) for detailed instructions.
 
-# Run application
-mvn exec:java -Dexec.mainClass="com.comp3607.JeopardyApp"
+---
 
-# Clean and rebuild
-mvn clean install
-
-# Skip tests (not recommended)
-mvn install -DskipTests
-```
-
-## Documentation Links
-
-- [README.md](README.md) - Full project documentation
-- [SOLID_PRINCIPLES.md](SOLID_PRINCIPLES.md) - SOLID principles explanation
-- [DESIGN_PATTERNS.md](DESIGN_PATTERNS.md) - Design patterns documentation
-- [TESTING_GUIDE.md](TESTING_GUIDE.md) - Testing instructions
-- [PROJECT_SUMMARY.md](PROJECT_SUMMARY.md) - Implementation summary
-
-## Support
-
-For issues or questions:
-1. Check the documentation files
-2. Review error messages carefully
-3. Ensure all prerequisites are met
-4. Verify file paths are correct
-
-## Next Steps
-
-1. ✅ Build the project: `mvn clean install`
-2. ✅ Run tests: `mvn test`
-3. ✅ Run the application: `mvn exec:java -Dexec.mainClass="com.comp3607.JeopardyApp"`
-4. ✅ Play a sample game
-5. ✅ Review generated reports
-6. ✅ Check process mining log
-
-Enjoy playing Jeopardy!
+**Happy Gaming! 🎮**
