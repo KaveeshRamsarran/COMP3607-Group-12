@@ -167,13 +167,21 @@ Enter question value:
 
 **Question Display:**
 ```
-Question (200 points):
-What is a variable in programming?
-
-A. A type of loop
-B. A storage location with a name
-C. A function
-D. A class
+╔════════════════════════════════════════════════════╗
+║              QUESTION - 200 POINTS                 ║
+╠════════════════════════════════════════════════════╣
+║  Category: Variables                               ║
+╠════════════════════════════════════════════════════╣
+║                                                    ║
+║  Which of the following best describes             ║
+║  a variable in programming                         ║
+║                                                    ║
+║  [A] A type of loop                                ║
+║  [B] A storage location with a name                ║
+║  [C] A function                                    ║
+║  [D] A class                                       ║
+║                                                    ║
+╚════════════════════════════════════════════════════╝
 
 Enter your answer (A, B, C, or D):
 ```
@@ -183,17 +191,25 @@ Enter your answer (A, B, C, or D):
 B
 ```
 
-**Result:**
+**Result (Correct Answer):**
 ```
-✅ Correct! You earned 200 points.
-Current score: 200
+╔════════════════════════════════════════════════════╗
+║                    ✅ CORRECT!                     ║
+╠════════════════════════════════════════════════════╣
+║  Points Earned: +200                               ║
+║  Current Score: 200                                ║
+╚════════════════════════════════════════════════════╝
 ```
 
-**Or if incorrect:**
+**Result (Incorrect Answer):**
 ```
-❌ Incorrect! You lost 200 points.
-The correct answer was: B
-Current score: -200
+╔════════════════════════════════════════════════════╗
+║                   ❌ INCORRECT                     ║
+╠════════════════════════════════════════════════════╣
+║  Correct Answer: B                                 ║
+║  Points Lost: -200                                 ║
+║  Current Score: -200                               ║
+╚════════════════════════════════════════════════════╝
 ```
 
 #### 5️⃣ Continue Playing
@@ -267,17 +283,30 @@ Enter category: Variables
 Available values for Variables: [100, 200, 300]
 Enter question value: 200
 
-Question (200 points):
-What is a variable in programming?
-
-A. A type of loop
-B. A storage location with a name
-C. A function
-D. A class
+╔════════════════════════════════════════════════════╗
+║              QUESTION - 200 POINTS                 ║
+╠════════════════════════════════════════════════════╣
+║  Category: Variables                               ║
+╠════════════════════════════════════════════════════╣
+║                                                    ║
+║  Which of the following best describes             ║
+║  a variable in programming                         ║
+║                                                    ║
+║  [A] A type of loop                                ║
+║  [B] A storage location with a name                ║
+║  [C] A function                                    ║
+║  [D] A class                                       ║
+║                                                    ║
+╚════════════════════════════════════════════════════╝
 
 Enter your answer (A, B, C, or D): B
-✅ Correct! You earned 200 points.
-Current score: 200
+
+╔════════════════════════════════════════════════════╗
+║                    ✅ CORRECT!                     ║
+╠════════════════════════════════════════════════════╣
+║  Points Earned: +200                               ║
+║  Current Score: 200                                ║
+╚════════════════════════════════════════════════════╝
 
 ========================================
 Turn 2 - Player: Bob (Score: 0)
