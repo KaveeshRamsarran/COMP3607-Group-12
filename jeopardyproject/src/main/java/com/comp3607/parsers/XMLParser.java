@@ -50,8 +50,10 @@ public class XMLParser implements FileParser {
                 
                 questions.add(new Question(category, value, questionText, options, correctAnswer));
             }
-        } catch (Exception e) {
+        } catch (javax.xml.parsers.ParserConfigurationException | org.xml.sax.SAXException e) {
             throw new IOException("Error parsing XML file: " + e.getMessage(), e);
+        } catch (NumberFormatException e) {
+            throw new IOException("Invalid number format in XML file: " + e.getMessage(), e);
         }
         
         return questions;

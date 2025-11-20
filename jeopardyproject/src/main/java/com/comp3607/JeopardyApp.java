@@ -53,11 +53,14 @@ public class JeopardyApp {
             // End game and generate reports
             endGame();
             
-        } catch (Exception e) {
-            System.err.println("Error: " + e.getMessage());
-            e.printStackTrace();
+        } catch (IOException e) {
+            System.err.println("File error: " + e.getMessage());
+        } catch (RuntimeException e) {
+            System.err.println("Runtime error: " + e.getMessage());
         } finally {
-            scanner.close();
+            if (scanner != null) {
+                scanner.close();
+            }
         }
     }
     
@@ -81,6 +84,9 @@ public class JeopardyApp {
     private void setupPlayers() {
         System.out.println("How many players? (1-4):");
         int numPlayers = getIntInput(1, 4);
+        
+        // Log player count selection
+        ProcessLog.getInstance().logEvent("Select Player Count", "Number of players: " + numPlayers);
         
         for (int i = 1; i <= numPlayers; i++) {
             System.out.printf("Enter name for Player %d: ", i);
@@ -123,7 +129,7 @@ public class JeopardyApp {
             
             System.out.println("\nAvailable Categories:");
             int index = 1;
-            String[] categoryArray = categories.toArray(new String[0]);
+            String[] categoryArray = categories.toArray(String[]::new);
             for (String category : categoryArray) {
                 System.out.println(index++ + ". " + category);
             }

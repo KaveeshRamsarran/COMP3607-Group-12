@@ -1,0 +1,37 @@
+=====================================
+    JEOPARDY GAME SUMMARY REPORT     
+=====================================
+Generated: 2025-11-20 16:24:16
+
+FINAL SCORES:
+-------------------------------------
+1. Alice: 100 points
+2. Bob: -200 points
+
+DETAILED TURN-BY-TURN BREAKDOWN:
+=====================================
+
+Player: Alice
+-------------------------------------
+Turn 1:
+  Category: Variables
+  Question Value: 100 points
+  Question: What is an int?
+  Given Answer: A
+  Result: CORRECT
+  Points Earned: +100
+  Running Total: 100
+
+
+Player: Bob
+-------------------------------------
+Turn 1:
+  Category: Control Structures
+  Question Value: 200 points
+  Question: What is a loop?
+  Given Answer: C
+  Result: INCORRECT
+  Points Earned: -200
+  Running Total: -200
+
+
