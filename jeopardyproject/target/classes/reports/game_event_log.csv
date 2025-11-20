@@ -1,14 +1,27 @@
 Case_ID,Player_ID,Activity,Timestamp,Category,Question_Value,Answer_Given,Result,Score_After_Play
-GAME_1763673469899,SYSTEM,Load File,2025-11-20T17:18:22,Attempting to load: src/main/resources/data/sample_game_JSON.json,,,,
-GAME_1763673469899,SYSTEM,File Loaded Successfully,2025-11-20T17:18:22,Loaded 25 questions,,,,
-GAME_1763673469899,SYSTEM,Select Player Count,2025-11-20T17:18:24,Number of players: 1,,,,
-GAME_1763673469899,SAM,Enter Player Name,2025-11-20T17:18:26,sam,,,,0
-GAME_1763673469899,SYSTEM,Start Game,2025-11-20T17:18:26,Game Started,,,,
-GAME_1763673469899,SAM,Select Category,2025-11-20T17:19:07,File Handling,,,,0
-GAME_1763673469899,SAM,Select Question,2025-11-20T17:19:07,File Handling,500,,,0
-GAME_1763673469899,SAM,Answer Question,2025-11-20T17:19:07,File Handling,500,A,Incorrect,-500
-GAME_1763673469899,SAM,Select Category,2025-11-20T17:19:44,Variables & Data Types,,,,-500
-GAME_1763673469899,SAM,Select Question,2025-11-20T17:19:44,Variables & Data Types,500,,,-500
-GAME_1763673469899,SAM,Answer Question,2025-11-20T17:19:44,Variables & Data Types,500,B,Correct,0
-GAME_1763673469899,SYSTEM,Generate Report,2025-11-20T17:19:54,Format: txt,,,,
-GAME_1763673469899,SYSTEM,Generate Event Log,2025-11-20T17:19:54,Creating process mining log,,,,
+GAME_1763679151585,SYSTEM,Load File,2025-11-20T18:53:09,Attempting to load: src/main/resources/data/sample_game_CSV.csv,,,,
+GAME_1763679151585,SYSTEM,File Loaded Successfully,2025-11-20T18:53:09,Loaded 25 questions,,,,
+GAME_1763679151585,SYSTEM,Select Player Count,2025-11-20T18:53:14,Number of players: 2,,,,
+GAME_1763679151585,KALE,Enter Player Name,2025-11-20T18:53:18,kale,,,,0
+GAME_1763679151585,US,Enter Player Name,2025-11-20T18:53:23,us,,,,0
+GAME_1763679151585,SYSTEM,Start Game,2025-11-20T18:53:23,Game Started,,,,
+GAME_1763679151585,KALE,Select Category,2025-11-20T18:54:36,File Handling,,,,0
+GAME_1763679151585,KALE,Select Question,2025-11-20T18:54:36,File Handling,200,,,0
+GAME_1763679151585,KALE,Answer Question,2025-11-20T18:54:36,File Handling,200,B,Correct,200
+GAME_1763679151585,US,Select Category,2025-11-20T18:55:08,Functions,,,,0
+GAME_1763679151585,US,Select Question,2025-11-20T18:55:08,Functions,500,,,0
+GAME_1763679151585,US,Answer Question,2025-11-20T18:55:08,Functions,500,B,Correct,500
+GAME_1763679151585,KALE,Select Category,2025-11-20T18:56:15,Variables & Data Types,,,,200
+GAME_1763679151585,KALE,Select Question,2025-11-20T18:56:15,Variables & Data Types,500,,,200
+GAME_1763679151585,KALE,Answer Question,2025-11-20T18:56:15,Variables & Data Types,500,A,Incorrect,-300
+GAME_1763679151585,US,Select Category,2025-11-20T18:57:08,Control Structures,,,,500
+GAME_1763679151585,US,Select Question,2025-11-20T18:57:08,Control Structures,500,,,500
+GAME_1763679151585,US,Answer Question,2025-11-20T18:57:08,Control Structures,500,A,Incorrect,0
+GAME_1763679151585,KALE,Select Category,2025-11-20T18:57:56,Control Structures,,,,-300
+GAME_1763679151585,KALE,Select Question,2025-11-20T18:57:56,Control Structures,300,,,-300
+GAME_1763679151585,KALE,Answer Question,2025-11-20T18:57:56,Control Structures,300,C,Correct,0
+GAME_1763679151585,US,Select Category,2025-11-20T18:58:32,Arrays,,,,0
+GAME_1763679151585,US,Select Question,2025-11-20T18:58:32,Arrays,500,,,0
+GAME_1763679151585,US,Answer Question,2025-11-20T18:58:32,Arrays,500,B,Correct,500
+GAME_1763679151585,SYSTEM,Generate Report,2025-11-20T18:58:53,Format: txt,,,,
+GAME_1763679151585,SYSTEM,Generate Event Log,2025-11-20T18:58:53,Creating process mining log,,,,
