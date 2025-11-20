@@ -30,23 +30,35 @@ public class XMLParser implements FileParser {
             Document document = builder.parse(new File(filePath));
             document.getDocumentElement().normalize();
             
+            // Try both tag names: "question" and "QuestionItem"
             NodeList nodeList = document.getElementsByTagName("question");
+            if (nodeList.getLength() == 0) {
+                nodeList = document.getElementsByTagName("QuestionItem");
+            }
             
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Element element = (Element) nodeList.item(i);
                 
-                String category = getElementTextContent(element, "category");
-                int value = Integer.parseInt(getElementTextContent(element, "value"));
-                String questionText = getElementTextContent(element, "questionText");
+                // Support both lowercase and capitalized tag names
+                String category = getElementText(element, "category", "Category");
+                int value = Integer.parseInt(getElementText(element, "value", "Value"));
+                String questionText = getElementText(element, "questionText", "QuestionText");
                 
                 Map<String, String> options = new HashMap<>();
+                // Try both tag names for options container
                 Element optionsElement = (Element) element.getElementsByTagName("options").item(0);
-                options.put("A", getElementTextContent(optionsElement, "A"));
-                options.put("B", getElementTextContent(optionsElement, "B"));
-                options.put("C", getElementTextContent(optionsElement, "C"));
-                options.put("D", getElementTextContent(optionsElement, "D"));
+                if (optionsElement == null) {
+                    optionsElement = (Element) element.getElementsByTagName("Options").item(0);
+                }
                 
-                String correctAnswer = getElementTextContent(element, "correctAnswer").toUpperCase();
+                if (optionsElement != null) {
+                    options.put("A", getElementText(optionsElement, "A", "OptionA"));
+                    options.put("B", getElementText(optionsElement, "B", "OptionB"));
+                    options.put("C", getElementText(optionsElement, "C", "OptionC"));
+                    options.put("D", getElementText(optionsElement, "D", "OptionD"));
+                }
+                
+                String correctAnswer = getElementText(element, "correctAnswer", "CorrectAnswer").toUpperCase();
                 
                 questions.add(new Question(category, value, questionText, options, correctAnswer));
             }
@@ -63,6 +75,16 @@ public class XMLParser implements FileParser {
         NodeList nodeList = parent.getElementsByTagName(tagName);
         if (nodeList.getLength() > 0) {
             return nodeList.item(0).getTextContent().trim();
+        }
+        return "";
+    }
+    
+    private String getElementText(Element parent, String... tagNames) {
+        for (String tagName : tagNames) {
+            NodeList nodeList = parent.getElementsByTagName(tagName);
+            if (nodeList.getLength() > 0) {
+                return nodeList.item(0).getTextContent().trim();
+            }
         }
         return "";
     }

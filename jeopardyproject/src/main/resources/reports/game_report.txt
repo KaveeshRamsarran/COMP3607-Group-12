@@ -1,37 +1,33 @@
 =====================================
     JEOPARDY GAME SUMMARY REPORT     
 =====================================
-Generated: 2025-11-20 16:24:16
+Generated: 2025-11-20 17:19:54
 
 FINAL SCORES:
 -------------------------------------
-1. Alice: 100 points
-2. Bob: -200 points
+1. sam: 0 points
 
 DETAILED TURN-BY-TURN BREAKDOWN:
 =====================================
 
-Player: Alice
+Player: sam
 -------------------------------------
 Turn 1:
-  Category: Variables
-  Question Value: 100 points
-  Question: What is an int?
+  Category: File Handling
+  Question Value: 500 points
+  Question: What happens if a file fails to open?
   Given Answer: A
-  Result: CORRECT
-  Points Earned: +100
-  Running Total: 100
-
-
-Player: Bob
--------------------------------------
-Turn 1:
-  Category: Control Structures
-  Question Value: 200 points
-  Question: What is a loop?
-  Given Answer: C
   Result: INCORRECT
-  Points Earned: -200
-  Running Total: -200
+  Points Earned: -500
+  Running Total: -500
+
+Turn 2:
+  Category: Variables & Data Types
+  Question Value: 500 points
+  Question: Which operator is used to get the remainder?
+  Given Answer: B
+  Result: CORRECT
+  Points Earned: +500
+  Running Total: 0
 
 

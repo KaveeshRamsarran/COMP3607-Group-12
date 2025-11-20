@@ -24,27 +24,50 @@ public class JSONParser implements FileParser {
         List<Question> questions = new ArrayList<>();
         
         JsonNode rootNode = objectMapper.readTree(new File(filePath));
-        JsonNode questionsNode = rootNode.get("questions");
+        
+        // Handle both formats: root array or object with "questions" array
+        JsonNode questionsNode = rootNode.isArray() ? rootNode : rootNode.get("questions");
         
         if (questionsNode != null && questionsNode.isArray()) {
             for (JsonNode questionNode : questionsNode) {
-                String category = questionNode.get("category").asText();
-                int value = questionNode.get("value").asInt();
-                String questionText = questionNode.get("question").asText();
+                // Support both lowercase and capitalized field names
+                String category = getTextValue(questionNode, "category", "Category");
+                int value = getIntValue(questionNode, "value", "Value");
+                String questionText = getTextValue(questionNode, "question", "Question", "QuestionText");
                 
                 Map<String, String> options = new HashMap<>();
-                JsonNode optionsNode = questionNode.get("options");
-                options.put("A", optionsNode.get("A").asText());
-                options.put("B", optionsNode.get("B").asText());
-                options.put("C", optionsNode.get("C").asText());
-                options.put("D", optionsNode.get("D").asText());
+                JsonNode optionsNode = questionNode.has("options") ? questionNode.get("options") : questionNode.get("Options");
+                if (optionsNode != null) {
+                    options.put("A", optionsNode.get("A").asText());
+                    options.put("B", optionsNode.get("B").asText());
+                    options.put("C", optionsNode.get("C").asText());
+                    options.put("D", optionsNode.get("D").asText());
+                }
                 
-                String correctAnswer = questionNode.get("correctAnswer").asText().toUpperCase();
+                String correctAnswer = getTextValue(questionNode, "correctAnswer", "CorrectAnswer").toUpperCase();
                 
                 questions.add(new Question(category, value, questionText, options, correctAnswer));
             }
         }
         
         return questions;
+    }
+    
+    private String getTextValue(JsonNode node, String... fieldNames) {
+        for (String fieldName : fieldNames) {
+            if (node.has(fieldName)) {
+                return node.get(fieldName).asText();
+            }
+        }
+        return "";
+    }
+    
+    private int getIntValue(JsonNode node, String... fieldNames) {
+        for (String fieldName : fieldNames) {
+            if (node.has(fieldName)) {
+                return node.get(fieldName).asInt();
+            }
+        }
+        return 0;
     }
 }
