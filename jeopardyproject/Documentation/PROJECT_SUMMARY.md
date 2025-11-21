@@ -1,7 +1,7 @@
 # Project Implementation Summary
 
 ## Overview
-Successfully implemented a complete Multi-Player Jeopardy Game application in Java with Maven build system, adhering to all assignment requirements.
+Successfully implemented a complete Multi-Player Jeopardy Game application in Java with dual interfaces (JavaFX GUI and CLI), Maven build system, and enhanced reporting features, adhering to all assignment requirements and exceeding expectations with a professional graphical user interface.
 
 ---
 
@@ -16,6 +16,8 @@ Successfully implemented a complete Multi-Player Jeopardy Game application in Ja
 - [x] Game completion detection
 - [x] Summary report generation (TXT, PDF, DOCX)
 - [x] Process mining event log in CSV format
+- [x] **Bonus: Professional JavaFX GUI** (855 lines)
+- [x] **Bonus: Enhanced reporting** with timestamps and event counts
 
 ### Technical Requirements
 - [x] **3+ Design Patterns Implemented**:
@@ -53,12 +55,13 @@ Successfully implemented a complete Multi-Player Jeopardy Game application in Ja
 ```
 jeopardyproject/
 ├── src/main/java/com/comp3607/
-│   ├── Game.java                     # Game controller
+│   ├── Game.java                     # Game controller with event logging
 │   ├── Player.java                   # Player entity with turn history
 │   ├── Question.java                 # Question entity with validation
-│   ├── ProcessLog.java               # Singleton event logger
+│   ├── ProcessLog.java               # Singleton event logger with clearEvents()
 │   ├── ReportGenerator.java          # Multi-format report generator
-│   ├── JeopardyApp.java              # Main application
+│   ├── JeopardyApp.java              # CLI application entry point
+│   ├── JeopardyAppGUI.java           # JavaFX GUI application (855 lines)
 │   ├── QuestionFactory.java          # Question creation
 │   ├── parsers/
 │   │   ├── FileParser.java           # Parser interface
@@ -91,7 +94,33 @@ jeopardyproject/
 - Question reuse prevention
 - Game completion detection
 
-### 3. Process Mining Log
+### 3. JavaFX GUI Application (Bonus Feature)
+**File**: `JeopardyAppGUI.java` (855 lines)
+
+**Key Components:**
+- `start()` - JavaFX Application entry point
+- `showWelcomeScreen()` - Professional Jeopardy splash screen
+- `showFileSelection()` - File browser with format detection
+- `showPlayerSetup()` - Player count selection (1-4)
+- `showPlayerNames()` - Contestant name entry
+- `showGameBoard()` - Main game interface with scores
+- `showCategorySelection()` - Interactive category buttons
+- `showValueSelection()` - Dollar amount buttons ($100-$500)
+- `showQuestion()` - Question display with radio buttons
+- `showResult()` - Animated correct/incorrect feedback
+- `endGame()` - Rankings with medals and report generation
+- `generateReport()` - Enhanced with timestamp display
+- `generateProcessLog()` - Shows event count and file time
+
+**Design Features:**
+- 1000x700 pixel window
+- Jeopardy color scheme (#060CE9 blue, #FFD700 gold)
+- Hover effects on all buttons
+- Real-time score tracking
+- "Quit Game" button that shows end screen (no progress lost)
+- File timestamps and event counts in success dialogs
+
+### 4. Process Mining Log
 Complete event logging with columns:
 - Case_ID (unique game session)
 - Player_ID

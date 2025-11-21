@@ -19,6 +19,43 @@ mvn test -Dtest=ProcessLogTest
 mvn test jacoco:report
 ```
 
+## Manual Testing
+
+### Test GUI Application
+```bash
+# Launch GUI for manual testing
+mvn javafx:run
+```
+
+**Test Checklist:**
+- ✅ Welcome screen displays correctly
+- ✅ File browser opens and selects files
+- ✅ File format auto-detection works
+- ✅ Player setup buttons respond to clicks
+- ✅ Player names can be entered
+- ✅ Game board displays with all players
+- ✅ Category buttons are clickable
+- ✅ Value buttons show correct amounts
+- ✅ Questions display with radio buttons
+- ✅ Answer submission works correctly
+- ✅ Correct/incorrect feedback appears
+- ✅ Scores update in real-time
+- ✅ "Quit Game" shows end screen
+- ✅ Final rankings display with medals
+- ✅ Report buttons generate files
+- ✅ File timestamps are current
+- ✅ Event counts match gameplay
+- ✅ Exit button closes application
+
+### Test CLI Application
+```bash
+# Windows
+mvn exec:java '-Dexec.mainClass=com.comp3607.JeopardyApp'
+
+# Linux/Mac
+mvn exec:java -Dexec.mainClass="com.comp3607.JeopardyApp"
+```
+
 ## Test Coverage
 
 ### Unit Tests

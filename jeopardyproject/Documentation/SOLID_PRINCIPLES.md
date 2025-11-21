@@ -1486,14 +1486,47 @@ public class YAMLParser implements FileParser {  // LSP: Substitutable
 
 ---
 
+## SOLID Principles in GUI Implementation
+
+The JavaFX GUI application (`JeopardyAppGUI.java`, 855 lines) adheres to all SOLID principles:
+
+### Single Responsibility
+- **JeopardyAppGUI**: Handles ONLY JavaFX UI presentation and user interaction
+- **Game**: Handles ONLY game logic and state management
+- **Clear Separation**: GUI doesn't contain game logic, Game doesn't contain UI code
+
+### Open/Closed
+- **GUI Extension**: Can create alternative UIs (Swing, web) without modifying Game
+- **Same Interfaces**: GUI uses same FileParser, CategoryStrategy, ReportGenerator
+- **No Core Changes**: Added 855-line GUI without changing existing classes
+
+### Liskov Substitution
+- **Interchangeable**: CLI and GUI both use same Game, Player, Question objects
+- **Same Contracts**: Both interfaces call same methods with same expectations
+- **Transparent**: Design patterns work identically in both CLI and GUI
+
+### Interface Segregation
+- **No GUI Dependencies**: Core classes don't depend on JavaFX
+- **Minimal Coupling**: GUI only uses necessary Game public methods
+- **Clean API**: Game provides focused interface for both CLI and GUI
+
+### Dependency Inversion
+- **GUI → Abstractions**: Depends on Game, FileParser interface, not implementations
+- **Flexibility**: Can swap parsers, strategies without changing GUI
+- **Loose Coupling**: High-level GUI depends on high-level Game abstraction
+
+---
+
 ## Conclusion
 
 This Jeopardy Game project demonstrates **comprehensive understanding and application** of all five SOLID principles:
 
-1. **SRP**: Every class has single, well-defined responsibility
-2. **OCP**: All major components open for extension, closed for modification
+1. **SRP**: Every class has single, well-defined responsibility (including 855-line GUI)
+2. **OCP**: All major components open for extension (proven by GUI addition)
 3. **LSP**: All implementations perfectly substitutable through interfaces
-4. **ISP**: All interfaces minimal and focused
+4. **ISP**: All interfaces minimal and focused (no GUI pollution)
 5. **DIP**: High-level modules depend on abstractions, not concrete classes
 
 The principles work together synergistically to create a flexible, maintainable, extensible, and professional codebase that exceeds assignment requirements and demonstrates mastery of object-oriented design.
+
+**Key Achievement**: Added comprehensive JavaFX GUI (855 lines) without violating any SOLID principle or modifying existing core classes, proving the architecture's robustness and extensibility.

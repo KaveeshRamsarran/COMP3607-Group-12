@@ -43,7 +43,21 @@ Expected output:
 
 ## Running the Application
 
-### Option 1: Using Maven (Recommended)
+### Option 1: JavaFX GUI (Recommended)
+```bash
+# Run the interactive GUI application
+mvn javafx:run
+```
+
+**GUI Features:**
+- 🎮 Interactive Jeopardy-style game board
+- 📁 Built-in file browser
+- 🎯 Visual category and dollar amount selection
+- ✅ Real-time score tracking
+- 🏆 End game screen with rankings and medals
+- 📄 One-click report generation with timestamps
+
+### Option 2: Command Line Interface
 ```bash
 # Windows PowerShell
 mvn exec:java '-Dexec.mainClass=com.comp3607.JeopardyApp'
@@ -52,14 +66,61 @@ mvn exec:java '-Dexec.mainClass=com.comp3607.JeopardyApp'
 mvn exec:java -Dexec.mainClass="com.comp3607.JeopardyApp"
 ```
 
-### Option 2: Using IDE
+### Option 3: Using IDE
 - Open project in IntelliJ IDEA, Eclipse, or VS Code
-- Navigate to `src/main/java/com/comp3607/JeopardyApp.java`
-- Right-click and select "Run JeopardyApp.main()"
+- For GUI: Navigate to `src/main/java/com/comp3607/JeopardyAppGUI.java` and run
+- For CLI: Navigate to `src/main/java/com/comp3607/JeopardyApp.java` and run
 
 ## Playing the Game
 
-### Step 1: Load Questions
+### GUI Version (Recommended)
+
+#### Step 1: Welcome Screen
+- Launch the application with `mvn javafx:run`
+- Click **"LET'S PLAY!"** on the welcome screen
+
+#### Step 2: Select Questions File
+- Click **"BROWSE FILES"** button
+- Navigate to `src/main/resources/data/`
+- Select a file (CSV, JSON, or XML)
+- File type is auto-detected
+- Click **"LOAD QUESTIONS"**
+
+#### Step 3: Choose Number of Players
+- Click a number button (1-4)
+- Click **"CONTINUE"**
+
+#### Step 4: Enter Player Names
+- Type name for each contestant
+- Click **"START GAME"**
+
+#### Step 5: Play the Game
+- View current player and scores at top
+- Click a **CATEGORY** button
+- Click a **DOLLAR AMOUNT** button ($100-$500)
+- Read the question
+- Select your answer (A, B, C, or D) using radio buttons
+- Click **"SUBMIT ANSWER"**
+- View result (correct/incorrect) with score update
+- Next player's turn begins automatically
+
+#### Step 6: End Game and Generate Reports
+- Click **"QUIT GAME"** when ready to end
+- Confirm to view final results
+- See rankings with medals (🥇 🥈 🥉)
+- Click report buttons:
+  - **TXT Report** - Plain text summary
+  - **PDF Report** - PDF document
+  - **DOCX Report** - Word document
+  - **Process Log** - CSV event log
+- Each button shows file location and timestamp
+- Click **"EXIT GAME"** when finished
+
+---
+
+### CLI Version
+
+#### Step 1: Load Questions
 When prompted, enter the file path:
 ```
 src/main/resources/data/sample_game_JSON.json
@@ -91,13 +152,33 @@ Enter name for Player 2: Bob
 Player Bob added successfully!
 ```
 
-### Step 3: Play Turns
+### Step 3: Play Turns (CLI)
 For each turn:
 1. **Select category**: Type the category name (e.g., `Variables`)
 2. **Select value**: Choose point value (e.g., `200`)
 3. **Read question**: View question with 4 options (A, B, C, D)
 4. **Answer**: Enter your choice (A, B, C, or D)
 5. **View result**: See if correct and your new score
+
+---
+
+## Troubleshooting
+
+### GUI Won't Start
+```bash
+# Ensure JavaFX dependencies are installed
+mvn clean install
+mvn javafx:run
+```
+
+### Reports Not Updating
+- Check the timestamp shown in the success dialog
+- Ensure you're looking at the correct file path (shown in dialog)
+- Reports directory: `src/main/resources/reports/`
+
+### File Browser Not Working
+- Use absolute path or navigate from project root
+- Default location: `src/main/resources/data/`
 
 Example turn:
 ```

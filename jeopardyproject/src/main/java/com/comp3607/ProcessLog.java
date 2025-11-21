@@ -65,6 +65,14 @@ public class ProcessLog {
      */
     public void generateCSVLog() {
         String outputPath = "src/main/resources/reports/game_event_log.csv";
+        
+        // Ensure directory exists
+        java.io.File dir = new java.io.File("src/main/resources/reports");
+        if (!dir.exists()) {
+            dir.mkdirs();
+            LOGGER.log(Level.INFO, "Created reports directory");
+        }
+        
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputPath))) {
             // Write header
             writer.write("Case_ID,Player_ID,Activity,Timestamp,Category,Question_Value,Answer_Given,Result,Score_After_Play");
@@ -76,6 +84,7 @@ public class ProcessLog {
                 writer.newLine();
             }
             LOGGER.log(Level.INFO, "Process mining log generated successfully: {0}", outputPath);
+            LOGGER.log(Level.INFO, "Total events logged: {0}", events.size());
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, "Error generating process log", e);
         }

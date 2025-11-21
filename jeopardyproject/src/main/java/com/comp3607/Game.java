@@ -30,6 +30,8 @@ public class Game {
         this.currentPlayerIndex = 0;
         this.reportGenerator = new ReportGenerator();
         this.processLog = ProcessLog.getInstance();
+        // Clear previous events for new game session
+        this.processLog.clearEvents();
         this.caseId = "GAME_" + System.currentTimeMillis();
         this.processLog.setCaseId(caseId);
         this.gameStarted = false;

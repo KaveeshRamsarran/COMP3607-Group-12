@@ -22,9 +22,21 @@ public class ReportGenerator {
     private static final String REPORTS_DIR = "src/main/resources/reports/";
     
     /**
+     * Ensure reports directory exists
+     */
+    private void ensureReportsDirectoryExists() {
+        File dir = new File(REPORTS_DIR);
+        if (!dir.exists()) {
+            dir.mkdirs();
+            LOGGER.log(Level.INFO, "Created reports directory: {0}", REPORTS_DIR);
+        }
+    }
+    
+    /**
      * Generate report in specified format
      */
     public void generateReport(List<Player> players, String format) throws IOException {
+        ensureReportsDirectoryExists();
         switch (format.toLowerCase()) {
             case "txt":
                 generateTXTReport(players);
