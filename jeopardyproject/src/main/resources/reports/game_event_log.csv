@@ -1,22 +1,19 @@
 Case_ID,Player_ID,Activity,Timestamp,Category,Question_Value,Answer_Given,Result,Score_After_Play
-GAME_1763766660329,SYSTEM,Load File,2025-11-21T19:11:13,Attempting to load: C:\Users\Samuel Soman\COMP3607-Group-12\jeopardyproject\src\main\resources\data\sample_game_XML.xml,,,,
-GAME_1763766660329,SYSTEM,File Loaded Successfully,2025-11-21T19:11:13,Loaded 25 questions,,,,
-GAME_1763766660329,SYSTEM,Select Player Count,2025-11-21T19:11:17,Number of players: 2,,,,
-GAME_1763766660329,ME,Enter Player Name,2025-11-21T19:11:22,me,,,,0
-GAME_1763766660329,YOU,Enter Player Name,2025-11-21T19:11:22,you,,,,0
-GAME_1763766660329,SYSTEM,Start Game,2025-11-21T19:11:22,Game Started,,,,
-GAME_1763766660329,ME,Select Category,2025-11-21T19:11:32,Arrays,,,,0
-GAME_1763766660329,ME,Select Question,2025-11-21T19:11:32,Arrays,500,,,0
-GAME_1763766660329,ME,Answer Question,2025-11-21T19:11:32,Arrays,500,B,Correct,500
-GAME_1763766660329,YOU,Select Category,2025-11-21T19:11:45,File Handling,,,,0
-GAME_1763766660329,YOU,Select Question,2025-11-21T19:11:45,File Handling,500,,,0
-GAME_1763766660329,YOU,Answer Question,2025-11-21T19:11:45,File Handling,500,C,Correct,500
-GAME_1763766660329,ME,Select Category,2025-11-21T19:11:53,Functions,,,,500
-GAME_1763766660329,ME,Select Question,2025-11-21T19:11:53,Functions,300,,,500
-GAME_1763766660329,ME,Answer Question,2025-11-21T19:11:53,Functions,300,B,Incorrect,200
-GAME_1763766660329,YOU,Select Category,2025-11-21T19:12:06,Control Structures,,,,500
-GAME_1763766660329,YOU,Select Question,2025-11-21T19:12:06,Control Structures,500,,,500
-GAME_1763766660329,YOU,Answer Question,2025-11-21T19:12:06,Control Structures,500,B,Correct,1000
-GAME_1763766660329,SYSTEM,Exit Game,2025-11-21T19:12:16,Game Ended,,,,
-GAME_1763766660329,SYSTEM,Generate Report,2025-11-21T19:12:24,Format: txt,,,,
-GAME_1763766660329,SYSTEM,Generate Event Log,2025-11-21T19:12:27,Creating process mining log,,,,
+GAME_1763767969499,SYSTEM,Load File,2025-11-21T19:33:01,Attempting to load: C:\Users\User\COMP3607-Group-12\jeopardyproject\src\main\resources\data\sample_game_CSV.csv,,,,
+GAME_1763767969499,SYSTEM,File Loaded Successfully,2025-11-21T19:33:01,Loaded 25 questions,,,,
+GAME_1763767969499,SYSTEM,Select Player Count,2025-11-21T19:33:05,Number of players: 3,,,,
+GAME_1763767969499,ARVING,Enter Player Name,2025-11-21T19:33:14,Arving,,,,0
+GAME_1763767969499,MANGALS,Enter Player Name,2025-11-21T19:33:14,Mangals,,,,0
+GAME_1763767969499,BADRIE,Enter Player Name,2025-11-21T19:33:14,Badrie,,,,0
+GAME_1763767969499,SYSTEM,Start Game,2025-11-21T19:33:14,Game Started,,,,
+GAME_1763767969499,ARVING,Select Category,2025-11-21T19:33:20,Variables & Data Types,,,,0
+GAME_1763767969499,ARVING,Select Question,2025-11-21T19:33:20,Variables & Data Types,300,,,0
+GAME_1763767969499,ARVING,Answer Question,2025-11-21T19:33:20,Variables & Data Types,300,C,Incorrect,-300
+GAME_1763767969499,MANGALS,Select Category,2025-11-21T19:33:25,Functions,,,,0
+GAME_1763767969499,MANGALS,Select Question,2025-11-21T19:33:25,Functions,200,,,0
+GAME_1763767969499,MANGALS,Answer Question,2025-11-21T19:33:25,Functions,200,B,Correct,200
+GAME_1763767969499,BADRIE,Select Category,2025-11-21T19:33:31,Arrays,,,,0
+GAME_1763767969499,BADRIE,Select Question,2025-11-21T19:33:31,Arrays,200,,,0
+GAME_1763767969499,BADRIE,Answer Question,2025-11-21T19:33:31,Arrays,200,C,Incorrect,-200
+GAME_1763767969499,SYSTEM,Exit Game,2025-11-21T19:33:34,Game Ended,,,,
+GAME_1763767969499,SYSTEM,Generate Event Log,2025-11-21T19:33:35,Creating process mining log,,,,

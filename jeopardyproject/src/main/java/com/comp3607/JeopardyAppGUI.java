@@ -29,6 +29,7 @@ public class JeopardyAppGUI extends Application {
     private final CategoryStrategy defaultStrategy = new VariableStrategy();
     private Stage primaryStage;
     private Scene mainScene;
+    private String jeopardyFontFamily = "Impact"; // Default font family (Jeopardy-themed)
     
     // UI Components
     private VBox mainContainer;
@@ -39,6 +40,7 @@ public class JeopardyAppGUI extends Application {
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
+        loadJeopardyFont();
         primaryStage.setTitle("JEOPARDY! - The Ultimate Trivia Challenge");
         
         // Show welcome screen
@@ -48,6 +50,29 @@ public class JeopardyAppGUI extends Application {
         primaryStage.setHeight(700);
         primaryStage.setResizable(false);
         primaryStage.show();
+    }
+    
+    /**
+     * Load Jeopardy-themed font from resources or use Impact as fallback
+     */
+    private void loadJeopardyFont() {
+        try {
+            File fontFile = new File("src/main/resources/fonts");
+            if (fontFile.exists() && fontFile.isDirectory()) {
+                File[] fonts = fontFile.listFiles((dir, name) -> name.endsWith(".ttf"));
+                if (fonts != null && fonts.length > 0) {
+                    // Load the first TTF font found
+                    String fontUrl = fonts[0].toURI().toString();
+                    Font customFont = Font.loadFont(fontUrl, 20);
+                    if (customFont != null) {
+                        jeopardyFontFamily = customFont.getFamily();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            // Fall back to Impact font
+            jeopardyFontFamily = "Impact";
+        }
     }
     
     /**
@@ -61,12 +86,12 @@ public class JeopardyAppGUI extends Application {
         
         // Title
         Text title = new Text("JEOPARDY!");
-        title.setFont(Font.font("Arial", FontWeight.BOLD, 72));
+        title.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 72));
         title.setFill(Color.WHITE);
         title.setStyle("-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.8), 10, 0, 0, 3);");
         
         Text subtitle = new Text("THE ULTIMATE TRIVIA CHALLENGE");
-        subtitle.setFont(Font.font("Arial", FontWeight.BOLD, 24));
+        subtitle.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 24));
         subtitle.setFill(Color.GOLD);
         
         // Start button
@@ -89,16 +114,16 @@ public class JeopardyAppGUI extends Application {
         fileBox.setPadding(new Insets(50));
         
         Text header = new Text("GAME SETUP");
-        header.setFont(Font.font("Arial", FontWeight.BOLD, 48));
+        header.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 48));
         header.setFill(Color.WHITE);
         
         Text instruction = new Text("📁 Select Questions File");
-        instruction.setFont(Font.font("Arial", FontWeight.NORMAL, 24));
+        instruction.setFont(Font.font(jeopardyFontFamily, FontWeight.NORMAL, 24));
         instruction.setFill(Color.GOLD);
         
         // File path display
         Label filePathLabel = new Label("No file selected");
-        filePathLabel.setFont(Font.font("Arial", 16));
+        filePathLabel.setFont(Font.font(jeopardyFontFamily, 16));
         filePathLabel.setTextFill(Color.WHITE);
         filePathLabel.setStyle("-fx-background-color: rgba(0,0,0,0.3); -fx-padding: 10;");
         filePathLabel.setMinWidth(500);
@@ -108,7 +133,7 @@ public class JeopardyAppGUI extends Application {
         fileTypeBox.setAlignment(Pos.CENTER);
         
         Label fileTypeLabel = new Label("File Type:");
-        fileTypeLabel.setFont(Font.font("Arial", FontWeight.BOLD, 18));
+        fileTypeLabel.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 18));
         fileTypeLabel.setTextFill(Color.WHITE);
         
         ToggleGroup fileTypeGroup = new ToggleGroup();
@@ -193,11 +218,11 @@ public class JeopardyAppGUI extends Application {
         setupBox.setPadding(new Insets(50));
         
         Text header = new Text("PLAYER REGISTRATION");
-        header.setFont(Font.font("Arial", FontWeight.BOLD, 48));
+        header.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 48));
         header.setFill(Color.WHITE);
         
         Text instruction = new Text("👥 How Many Contestants?");
-        instruction.setFont(Font.font("Arial", FontWeight.NORMAL, 24));
+        instruction.setFont(Font.font(jeopardyFontFamily, FontWeight.NORMAL, 24));
         instruction.setFill(Color.GOLD);
         
         // Player count buttons
@@ -208,7 +233,7 @@ public class JeopardyAppGUI extends Application {
         for (int i = 1; i <= 4; i++) {
             ToggleButton btn = new ToggleButton(String.valueOf(i));
             btn.setToggleGroup(playerGroup);
-            btn.setFont(Font.font("Arial", FontWeight.BOLD, 28));
+            btn.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 28));
             btn.setPrefSize(80, 80);
             btn.setStyle("-fx-background-color: #FFD700; -fx-text-fill: #060CE9; " +
                         "-fx-background-radius: 10; -fx-border-color: white; " +
@@ -258,7 +283,7 @@ public class JeopardyAppGUI extends Application {
         namesBox.setPadding(new Insets(50));
         
         Text header = new Text("ENTER CONTESTANT NAMES");
-        header.setFont(Font.font("Arial", FontWeight.BOLD, 42));
+        header.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 42));
         header.setFill(Color.WHITE);
         
         VBox inputsBox = new VBox(15);
@@ -272,13 +297,13 @@ public class JeopardyAppGUI extends Application {
             playerBox.setAlignment(Pos.CENTER);
             
             Label label = new Label("👤 Contestant " + (i + 1) + ":");
-            label.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+            label.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 20));
             label.setTextFill(Color.GOLD);
             label.setMinWidth(180);
             
             TextField nameField = new TextField();
             nameField.setPromptText("Enter name");
-            nameField.setFont(Font.font("Arial", 18));
+            nameField.setFont(Font.font(jeopardyFontFamily, 18));
             nameField.setPrefWidth(300);
             nameField.setStyle("-fx-background-color: white; -fx-text-fill: #060CE9; " +
                              "-fx-padding: 10; -fx-font-weight: bold;");
@@ -341,11 +366,11 @@ public class JeopardyAppGUI extends Application {
         Player currentPlayer = game.getCurrentPlayer();
         
         playerLabel = new Label("CONTESTANT: " + currentPlayer.getName().toUpperCase());
-        playerLabel.setFont(Font.font("Arial", FontWeight.BOLD, 32));
+        playerLabel.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 32));
         playerLabel.setTextFill(Color.WHITE);
         
         scoreLabel = new Label("SCORE: $" + currentPlayer.getScore());
-        scoreLabel.setFont(Font.font("Arial", FontWeight.BOLD, 28));
+        scoreLabel.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 28));
         scoreLabel.setTextFill(Color.GOLD);
         
         topBox.getChildren().addAll(playerLabel, scoreLabel);
@@ -365,7 +390,7 @@ public class JeopardyAppGUI extends Application {
         quitButton.setOnAction(e -> confirmQuit());
         
         statusLabel = new Label("Select a category to continue...");
-        statusLabel.setFont(Font.font("Arial", FontWeight.NORMAL, 16));
+        statusLabel.setFont(Font.font(jeopardyFontFamily, FontWeight.NORMAL, 16));
         statusLabel.setTextFill(Color.WHITE);
         
         bottomBox.getChildren().addAll(statusLabel, quitButton);
@@ -398,7 +423,7 @@ public class JeopardyAppGUI extends Application {
         }
         
         Text header = new Text("SELECT A CATEGORY");
-        header.setFont(Font.font("Arial", FontWeight.BOLD, 36));
+        header.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 36));
         header.setFill(Color.WHITE);
         
         GridPane categoryGrid = new GridPane();
@@ -413,7 +438,7 @@ public class JeopardyAppGUI extends Application {
         
         for (String category : categoryArray) {
             Button categoryBtn = new Button(category.toUpperCase());
-            categoryBtn.setFont(Font.font("Arial", FontWeight.BOLD, 22));
+            categoryBtn.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 22));
             categoryBtn.setPrefSize(400, 100);
             categoryBtn.setStyle("-fx-background-color: #FFD700; -fx-text-fill: #060CE9; " +
                                "-fx-background-radius: 15; -fx-border-color: white; " +
@@ -456,11 +481,11 @@ public class JeopardyAppGUI extends Application {
         }
         
         Text header = new Text(category.toUpperCase());
-        header.setFont(Font.font("Arial", FontWeight.BOLD, 36));
+        header.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 36));
         header.setFill(Color.GOLD);
         
         Text subHeader = new Text("SELECT POINT VALUE");
-        subHeader.setFont(Font.font("Arial", FontWeight.BOLD, 28));
+        subHeader.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 28));
         subHeader.setFill(Color.WHITE);
         
         HBox valuesBox = new HBox(20);
@@ -469,7 +494,7 @@ public class JeopardyAppGUI extends Application {
         
         for (int value : values) {
             Button valueBtn = new Button("$" + value);
-            valueBtn.setFont(Font.font("Arial", FontWeight.BOLD, 32));
+            valueBtn.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 32));
             valueBtn.setPrefSize(150, 150);
             valueBtn.setStyle("-fx-background-color: #FFD700; -fx-text-fill: #060CE9; " +
                             "-fx-background-radius: 20; -fx-border-color: white; " +
@@ -516,11 +541,11 @@ public class JeopardyAppGUI extends Application {
                             "-fx-border-color: #FFD700; -fx-border-width: 5; -fx-border-radius: 20;");
         
         Label categoryLabel = new Label(category.toUpperCase() + " - $" + value);
-        categoryLabel.setFont(Font.font("Arial", FontWeight.BOLD, 24));
+        categoryLabel.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 24));
         categoryLabel.setTextFill(Color.GOLD);
         
         Text questionText = new Text(question.getQuestionText());
-        questionText.setFont(Font.font("Arial", FontWeight.NORMAL, 22));
+        questionText.setFont(Font.font(jeopardyFontFamily, FontWeight.NORMAL, 22));
         questionText.setFill(Color.WHITE);
         questionText.setWrappingWidth(750);
         questionText.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
@@ -537,7 +562,7 @@ public class JeopardyAppGUI extends Application {
             if (optionText != null) {
                 RadioButton option = new RadioButton("[" + key + "] " + optionText);
                 option.setToggleGroup(answerGroup);
-                option.setFont(Font.font("Arial", FontWeight.BOLD, 18));
+                option.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 18));
                 option.setTextFill(Color.WHITE);
                 option.setUserData(key);
                 
@@ -584,7 +609,7 @@ public class JeopardyAppGUI extends Application {
         Color resultColor = correct ? Color.LIGHTGREEN : Color.LIGHTCORAL;
         
         Text resultHeader = new Text(resultEmoji + " " + resultText + " " + resultEmoji);
-        resultHeader.setFont(Font.font("Arial", FontWeight.BOLD, 48));
+        resultHeader.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 48));
         resultHeader.setFill(resultColor);
         
         VBox detailsBox = new VBox(15);
@@ -594,17 +619,17 @@ public class JeopardyAppGUI extends Application {
         
         if (!correct) {
             Label correctAnswerLabel = new Label("Correct Answer: " + result.getCorrectAnswer());
-            correctAnswerLabel.setFont(Font.font("Arial", FontWeight.BOLD, 22));
+            correctAnswerLabel.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 22));
             correctAnswerLabel.setTextFill(Color.WHITE);
             detailsBox.getChildren().add(correctAnswerLabel);
         }
         
         Label pointsLabel = new Label("Points: " + (correct ? "+" : "") + result.getPointsEarned());
-        pointsLabel.setFont(Font.font("Arial", FontWeight.BOLD, 28));
+        pointsLabel.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 28));
         pointsLabel.setTextFill(Color.GOLD);
         
         Label newScoreLabel = new Label("New Score: $" + result.getNewScore());
-        newScoreLabel.setFont(Font.font("Arial", FontWeight.BOLD, 28));
+        newScoreLabel.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 28));
         newScoreLabel.setTextFill(Color.GOLD);
         
         detailsBox.getChildren().addAll(pointsLabel, newScoreLabel);
@@ -637,11 +662,11 @@ public class JeopardyAppGUI extends Application {
         endBox.setPadding(new Insets(50));
         
         Text header = new Text("🏆 GAME OVER 🏆");
-        header.setFont(Font.font("Arial", FontWeight.BOLD, 56));
+        header.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 56));
         header.setFill(Color.GOLD);
         
         Text subHeader = new Text("FINAL RESULTS");
-        subHeader.setFont(Font.font("Arial", FontWeight.BOLD, 36));
+        subHeader.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 36));
         subHeader.setFill(Color.WHITE);
         
         VBox scoresBox = new VBox(15);
@@ -657,7 +682,7 @@ public class JeopardyAppGUI extends Application {
             String medal = rank == 1 ? "🥇" : rank == 2 ? "🥈" : rank == 3 ? "🥉" : "  ";
             Label playerScore = new Label(medal + " #" + rank + " - " + 
                                          player.getName() + ": $" + player.getScore());
-            playerScore.setFont(Font.font("Arial", FontWeight.BOLD, 28));
+            playerScore.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 28));
             playerScore.setTextFill(rank == 1 ? Color.GOLD : Color.WHITE);
             scoresBox.getChildren().add(playerScore);
             rank++;
@@ -669,7 +694,7 @@ public class JeopardyAppGUI extends Application {
         reportBox.setPadding(new Insets(20));
         
         Text reportHeader = new Text("📊 GENERATE REPORTS");
-        reportHeader.setFont(Font.font("Arial", FontWeight.BOLD, 24));
+        reportHeader.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 24));
         reportHeader.setFill(Color.GOLD);
         
         HBox reportButtons = new HBox(15);
@@ -809,7 +834,7 @@ public class JeopardyAppGUI extends Application {
      */
     private Button createStyledButton(String text, double width, double height) {
         Button button = new Button(text);
-        button.setFont(Font.font("Arial", FontWeight.BOLD, 18));
+        button.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 18));
         button.setPrefSize(width, height);
         button.setStyle("-fx-background-color: #FFD700; -fx-text-fill: #060CE9; " +
                        "-fx-background-radius: 10; -fx-border-color: white; " +
@@ -832,7 +857,7 @@ public class JeopardyAppGUI extends Application {
      */
     private Button createSmallButton(String text, double width, double height) {
         Button button = new Button(text);
-        button.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+        button.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 14));
         button.setPrefSize(width, height);
         button.setStyle("-fx-background-color: #FFD700; -fx-text-fill: #060CE9; " +
                        "-fx-background-radius: 8; -fx-border-color: white; " +
@@ -854,7 +879,7 @@ public class JeopardyAppGUI extends Application {
      * Style radio button
      */
     private void styleRadioButton(RadioButton radio) {
-        radio.setFont(Font.font("Arial", FontWeight.BOLD, 18));
+        radio.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 18));
         radio.setTextFill(Color.WHITE);
         radio.setStyle("-fx-text-fill: white;");
     }
