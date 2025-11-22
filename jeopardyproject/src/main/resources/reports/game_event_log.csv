@@ -1,19 +1,27 @@
 Case_ID,Player_ID,Activity,Timestamp,Category,Question_Value,Answer_Given,Result,Score_After_Play
-GAME_1763767969499,SYSTEM,Load File,2025-11-21T19:33:01,Attempting to load: C:\Users\User\COMP3607-Group-12\jeopardyproject\src\main\resources\data\sample_game_CSV.csv,,,,
-GAME_1763767969499,SYSTEM,File Loaded Successfully,2025-11-21T19:33:01,Loaded 25 questions,,,,
-GAME_1763767969499,SYSTEM,Select Player Count,2025-11-21T19:33:05,Number of players: 3,,,,
-GAME_1763767969499,ARVING,Enter Player Name,2025-11-21T19:33:14,Arving,,,,0
-GAME_1763767969499,MANGALS,Enter Player Name,2025-11-21T19:33:14,Mangals,,,,0
-GAME_1763767969499,BADRIE,Enter Player Name,2025-11-21T19:33:14,Badrie,,,,0
-GAME_1763767969499,SYSTEM,Start Game,2025-11-21T19:33:14,Game Started,,,,
-GAME_1763767969499,ARVING,Select Category,2025-11-21T19:33:20,Variables & Data Types,,,,0
-GAME_1763767969499,ARVING,Select Question,2025-11-21T19:33:20,Variables & Data Types,300,,,0
-GAME_1763767969499,ARVING,Answer Question,2025-11-21T19:33:20,Variables & Data Types,300,C,Incorrect,-300
-GAME_1763767969499,MANGALS,Select Category,2025-11-21T19:33:25,Functions,,,,0
-GAME_1763767969499,MANGALS,Select Question,2025-11-21T19:33:25,Functions,200,,,0
-GAME_1763767969499,MANGALS,Answer Question,2025-11-21T19:33:25,Functions,200,B,Correct,200
-GAME_1763767969499,BADRIE,Select Category,2025-11-21T19:33:31,Arrays,,,,0
-GAME_1763767969499,BADRIE,Select Question,2025-11-21T19:33:31,Arrays,200,,,0
-GAME_1763767969499,BADRIE,Answer Question,2025-11-21T19:33:31,Arrays,200,C,Incorrect,-200
-GAME_1763767969499,SYSTEM,Exit Game,2025-11-21T19:33:34,Game Ended,,,,
-GAME_1763767969499,SYSTEM,Generate Event Log,2025-11-21T19:33:35,Creating process mining log,,,,
+GAME_1763775964759,SYSTEM,Load File,2025-11-21T20:46:09,Attempting to load: C:\Users\Adrian\Downloads\COMP3607-Group-12\jeopardyproject\src\main\resources\data\sample_game_CSV.csv,,,,
+GAME_1763775964759,SYSTEM,File Loaded Successfully,2025-11-21T20:46:09,Loaded 25 questions,,,,
+GAME_1763775964759,SYSTEM,Select Player Count,2025-11-21T20:46:11,Number of players: 4,,,,
+GAME_1763775964759,GREG,Enter Player Name,2025-11-21T20:46:14,greg,,,,0
+GAME_1763775964759,ERG,Enter Player Name,2025-11-21T20:46:14,erg,,,,0
+GAME_1763775964759,ERGR,Enter Player Name,2025-11-21T20:46:14,ergr,,,,0
+GAME_1763775964759,GREG,Enter Player Name,2025-11-21T20:46:14,greg,,,,0
+GAME_1763775964759,SYSTEM,Start Game,2025-11-21T20:46:14,Game Started,,,,
+GAME_1763775964759,GREG,Select Category,2025-11-21T20:46:17,Variables & Data Types,,,,0
+GAME_1763775964759,GREG,Select Question,2025-11-21T20:46:17,Variables & Data Types,400,,,0
+GAME_1763775964759,GREG,Answer Question,2025-11-21T20:46:17,Variables & Data Types,400,C,Incorrect,-400
+GAME_1763775964759,ERG,Select Category,2025-11-21T20:46:24,File Handling,,,,0
+GAME_1763775964759,ERG,Select Question,2025-11-21T20:46:24,File Handling,300,,,0
+GAME_1763775964759,ERG,Answer Question,2025-11-21T20:46:24,File Handling,300,B,Incorrect,-300
+GAME_1763775964759,ERGR,Select Category,2025-11-21T20:46:27,Variables & Data Types,,,,0
+GAME_1763775964759,ERGR,Select Question,2025-11-21T20:46:27,Variables & Data Types,300,,,0
+GAME_1763775964759,ERGR,Answer Question,2025-11-21T20:46:27,Variables & Data Types,300,C,Incorrect,-300
+GAME_1763775964759,GREG,Select Category,2025-11-21T20:46:31,Control Structures,,,,0
+GAME_1763775964759,GREG,Select Question,2025-11-21T20:46:31,Control Structures,300,,,0
+GAME_1763775964759,GREG,Answer Question,2025-11-21T20:46:31,Control Structures,300,A,Incorrect,-300
+GAME_1763775964759,GREG,Select Category,2025-11-21T20:46:34,File Handling,,,,-400
+GAME_1763775964759,GREG,Select Question,2025-11-21T20:46:34,File Handling,100,,,-400
+GAME_1763775964759,GREG,Answer Question,2025-11-21T20:46:34,File Handling,100,B,Incorrect,-500
+GAME_1763775964759,SYSTEM,Exit Game,2025-11-21T20:46:38,Game Ended,,,,
+GAME_1763775964759,SYSTEM,Generate Report,2025-11-21T20:46:53,Format: txt,,,,
+GAME_1763775964759,SYSTEM,Generate Event Log,2025-11-21T20:46:54,Creating process mining log,,,,

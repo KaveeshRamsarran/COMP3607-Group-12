@@ -13,6 +13,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.animation.FadeTransition;
+import javafx.animation.ScaleTransition;
+import javafx.animation.Timeline;
+import javafx.animation.KeyFrame;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.Glow;
+import javafx.util.Duration;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -36,6 +43,7 @@ public class JeopardyAppGUI extends Application {
     private Label statusLabel;
     private Label playerLabel;
     private Label scoreLabel;
+    private Timeline questionTimer;
     
     @Override
     public void start(Stage primaryStage) {
@@ -79,28 +87,80 @@ public class JeopardyAppGUI extends Application {
      * Display welcome screen
      */
     private void showWelcomeScreen() {
-        VBox welcomeBox = new VBox(30);
+        StackPane root = new StackPane();
+        root.setStyle("-fx-background-color: linear-gradient(#01021A, #060CE9);");
+        root.setPadding(new Insets(40));
+
+        Region shimmer = new Region();
+        shimmer.setStyle("-fx-background-color: radial-gradient(center 50% 30%, radius 70%, rgba(255,255,255,0.25), transparent);");
+        shimmer.setMouseTransparent(true);
+        shimmer.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+
+        VBox welcomeBox = new VBox(25);
         welcomeBox.setAlignment(Pos.CENTER);
-        welcomeBox.setStyle("-fx-background-color: #060CE9;");
         welcomeBox.setPadding(new Insets(50));
+        welcomeBox.setSpacing(25);
+        welcomeBox.setMaxWidth(600);
+        welcomeBox.setStyle("-fx-background-color: rgba(0,0,0,0.45); -fx-background-radius: 30; " +
+                            "-fx-border-color: rgba(255,215,0,0.6); -fx-border-width: 2; -fx-border-radius: 28; " +
+                            "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 30, 0.2, 0, 10);");
         
         // Title
         Text title = new Text("JEOPARDY!");
         title.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 72));
         title.setFill(Color.WHITE);
         title.setStyle("-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.8), 10, 0, 0, 3);");
+        DropShadow titleGlow = new DropShadow();
+        titleGlow.setColor(Color.web("#00F0FF"));
+        titleGlow.setRadius(25);
+        titleGlow.setSpread(0.4);
+        title.setEffect(titleGlow);
         
         Text subtitle = new Text("THE ULTIMATE TRIVIA CHALLENGE");
         subtitle.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 24));
         subtitle.setFill(Color.GOLD);
+        Glow subtitleGlow = new Glow(0.4);
+        subtitle.setEffect(subtitleGlow);
+
+        Text tagline = new Text("Load a dataset, register your contestants, and prove who knows the board best.");
+        tagline.setFont(Font.font("Segoe UI", FontWeight.SEMI_BOLD, 18));
+        tagline.setFill(Color.web("#E0E6FF"));
+        tagline.setWrappingWidth(480);
+        tagline.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
+
+        Region divider = new Region();
+        divider.setPrefHeight(4);
+        divider.setMaxWidth(200);
+        divider.setStyle("-fx-background-color: linear-gradient(to right, transparent, #FFD700, transparent); " +
+                 "-fx-background-radius: 2;");
+
+        // Simple animation for home screen text
+        ScaleTransition titlePulse = new ScaleTransition(Duration.seconds(1.2), title);
+        titlePulse.setFromX(1.0);
+        titlePulse.setFromY(1.0);
+        titlePulse.setToX(1.08);
+        titlePulse.setToY(1.08);
+        titlePulse.setAutoReverse(true);
+        titlePulse.setCycleCount(Timeline.INDEFINITE);
+        titlePulse.play();
+
+        FadeTransition subtitleFade = new FadeTransition(Duration.seconds(1.5), subtitle);
+        subtitleFade.setFromValue(0.4);
+        subtitleFade.setToValue(1.0);
+        subtitleFade.setAutoReverse(true);
+        subtitleFade.setCycleCount(Timeline.INDEFINITE);
+        subtitleFade.play();
         
         // Start button
         Button startButton = createStyledButton("START GAME", 200, 60);
         startButton.setOnAction(e -> showFileSelection());
         
-        welcomeBox.getChildren().addAll(title, subtitle, startButton);
+        welcomeBox.getChildren().addAll(title, subtitle, divider, tagline, startButton);
         
-        mainScene = new Scene(welcomeBox);
+        root.getChildren().addAll(shimmer, welcomeBox);
+        StackPane.setAlignment(welcomeBox, Pos.CENTER);
+        
+        mainScene = new Scene(root);
         primaryStage.setScene(mainScene);
     }
     
@@ -108,29 +168,42 @@ public class JeopardyAppGUI extends Application {
      * Show file selection screen
      */
     private void showFileSelection() {
-        VBox fileBox = new VBox(20);
+        StackPane root = new StackPane();
+        root.setStyle("-fx-background-color: linear-gradient(#01021A, #04098C);");
+        root.setPadding(new Insets(40));
+
+        VBox fileBox = new VBox(25);
         fileBox.setAlignment(Pos.CENTER);
-        fileBox.setStyle("-fx-background-color: #060CE9;");
         fileBox.setPadding(new Insets(50));
+        fileBox.setSpacing(20);
+        fileBox.setMaxWidth(700);
+        fileBox.setStyle("-fx-background-color: rgba(0,0,0,0.45); -fx-background-radius: 30; " +
+                         "-fx-border-color: rgba(255,215,0,0.6); -fx-border-width: 2; -fx-border-radius: 28; " +
+                         "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 25, 0.2, 0, 12);");
         
         Text header = new Text("GAME SETUP");
-        header.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 48));
+        header.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 50));
         header.setFill(Color.WHITE);
+        header.setEffect(new DropShadow(20, Color.BLACK));
         
-        Text instruction = new Text("📁 Select Questions File");
+        Text instruction = new Text("📁 Choose your question bank");
         instruction.setFont(Font.font(jeopardyFontFamily, FontWeight.NORMAL, 24));
         instruction.setFill(Color.GOLD);
+        instruction.setWrappingWidth(520);
+        instruction.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
         
         // File path display
         Label filePathLabel = new Label("No file selected");
         filePathLabel.setFont(Font.font(jeopardyFontFamily, 16));
         filePathLabel.setTextFill(Color.WHITE);
-        filePathLabel.setStyle("-fx-background-color: rgba(0,0,0,0.3); -fx-padding: 10;");
+        filePathLabel.setStyle("-fx-background-color: rgba(255,255,255,0.1); -fx-padding: 14; -fx-background-radius: 12; " +
+                       "-fx-border-color: rgba(255,215,0,0.4); -fx-border-radius: 12;");
         filePathLabel.setMinWidth(500);
         
         // File type selection
         HBox fileTypeBox = new HBox(15);
         fileTypeBox.setAlignment(Pos.CENTER);
+        fileTypeBox.setStyle("-fx-background-color: rgba(0,0,0,0.35); -fx-padding: 15 25; -fx-background-radius: 15;");
         
         Label fileTypeLabel = new Label("File Type:");
         fileTypeLabel.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 18));
@@ -201,10 +274,20 @@ public class JeopardyAppGUI extends Application {
         HBox buttonBox = new HBox(20);
         buttonBox.setAlignment(Pos.CENTER);
         buttonBox.getChildren().addAll(browseButton, loadButton);
+
+        Label helperText = new Label("Tip: Sample datasets live in src/main/resources/data to help you get started quickly.");
+        helperText.setFont(Font.font("Segoe UI", FontWeight.SEMI_BOLD, 16));
+        helperText.setTextFill(Color.web("#E0E6FF"));
+        helperText.setWrapText(true);
+        helperText.setAlignment(Pos.CENTER);
+        helperText.setStyle("-fx-background-color: rgba(0,0,0,0.3); -fx-padding: 12 18; -fx-background-radius: 12;");
+        helperText.setMaxWidth(520);
+
+        fileBox.getChildren().addAll(header, instruction, filePathLabel, fileTypeBox, buttonBox, helperText);
+
+        root.getChildren().add(fileBox);
         
-        fileBox.getChildren().addAll(header, instruction, filePathLabel, fileTypeBox, buttonBox);
-        
-        mainScene = new Scene(fileBox);
+        mainScene = new Scene(root);
         primaryStage.setScene(mainScene);
     }
     
@@ -212,44 +295,57 @@ public class JeopardyAppGUI extends Application {
      * Show player setup screen
      */
     private void showPlayerSetup() {
+        StackPane root = new StackPane();
+        root.setStyle("-fx-background-color: linear-gradient(#01021A, #04116C);");
+        root.setPadding(new Insets(40));
+
         VBox setupBox = new VBox(25);
         setupBox.setAlignment(Pos.CENTER);
-        setupBox.setStyle("-fx-background-color: #060CE9;");
-        setupBox.setPadding(new Insets(50));
+        setupBox.setPadding(new Insets(60));
+        setupBox.setMaxWidth(650);
+        setupBox.setStyle("-fx-background-color: rgba(0,0,0,0.45); -fx-background-radius: 30; " +
+                          "-fx-border-color: rgba(255,215,0,0.6); -fx-border-width: 2; -fx-border-radius: 28; " +
+                          "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 25, 0.2, 0, 12);");
         
         Text header = new Text("PLAYER REGISTRATION");
         header.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 48));
         header.setFill(Color.WHITE);
+        header.setEffect(new DropShadow(20, Color.BLACK));
         
-        Text instruction = new Text("👥 How Many Contestants?");
+        Text instruction = new Text("👥 How many contestants are stepping up?");
         instruction.setFont(Font.font(jeopardyFontFamily, FontWeight.NORMAL, 24));
         instruction.setFill(Color.GOLD);
+        instruction.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
         
         // Player count buttons
         HBox playerCountBox = new HBox(15);
         playerCountBox.setAlignment(Pos.CENTER);
         
         ToggleGroup playerGroup = new ToggleGroup();
+        List<ToggleButton> playerButtons = new ArrayList<>();
         for (int i = 1; i <= 4; i++) {
-            ToggleButton btn = new ToggleButton(String.valueOf(i));
+            ToggleButton btn = new ToggleButton("Player " + i);
+            btn.setUserData(i); // keep numeric value for logic while showing friendlier text
             btn.setToggleGroup(playerGroup);
-            btn.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 28));
-            btn.setPrefSize(80, 80);
-            btn.setStyle("-fx-background-color: #FFD700; -fx-text-fill: #060CE9; " +
-                        "-fx-background-radius: 10; -fx-border-color: white; " +
-                        "-fx-border-width: 3; -fx-border-radius: 10;");
+            btn.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 26));
+            btn.setPrefSize(140, 90);
+            btn.setWrapText(true);
+            btn.setStyle("-fx-background-color: rgba(255,255,255,0.15); -fx-text-fill: white; " +
+                        "-fx-background-radius: 16; -fx-border-color: rgba(255,215,0,0.7); " +
+                        "-fx-border-width: 2; -fx-border-radius: 16;");
             
-            btn.setOnMouseEntered(ev -> btn.setStyle("-fx-background-color: #FFA500; " +
-                        "-fx-text-fill: white; -fx-background-radius: 10; " +
-                        "-fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 10;"));
+            btn.setOnMouseEntered(ev -> btn.setStyle("-fx-background-color: rgba(255,215,0,0.8); " +
+                    "-fx-text-fill: #04116C; -fx-background-radius: 16; -fx-border-color: white; " +
+                    "-fx-border-width: 2; -fx-border-radius: 16;"));
             btn.setOnMouseExited(ev -> {
                 if (!btn.isSelected()) {
-                    btn.setStyle("-fx-background-color: #FFD700; -fx-text-fill: #060CE9; " +
-                        "-fx-background-radius: 10; -fx-border-color: white; " +
-                        "-fx-border-width: 3; -fx-border-radius: 10;");
+                    btn.setStyle("-fx-background-color: rgba(255,255,255,0.15); -fx-text-fill: white; " +
+                            "-fx-background-radius: 16; -fx-border-color: rgba(255,215,0,0.7); " +
+                            "-fx-border-width: 2; -fx-border-radius: 16;");
                 }
             });
-            
+
+            playerButtons.add(btn);
             playerCountBox.getChildren().add(btn);
         }
         
@@ -258,18 +354,40 @@ public class JeopardyAppGUI extends Application {
         
         playerGroup.selectedToggleProperty().addListener((obs, old, newVal) -> {
             continueButton.setDisable(newVal == null);
+
+            // Ensure only the active button shows the "selected" style
+            for (ToggleButton btn : playerButtons) {
+                if (btn.equals(newVal)) {
+                    btn.setStyle("-fx-background-color: linear-gradient(#FFD700, #FFB347); -fx-text-fill: #04116C; " +
+                            "-fx-background-radius: 16; -fx-border-color: white; -fx-border-width: 2; -fx-border-radius: 16;");
+                } else {
+                    btn.setStyle("-fx-background-color: rgba(255,255,255,0.15); -fx-text-fill: white; " +
+                            "-fx-background-radius: 16; -fx-border-color: rgba(255,215,0,0.7); " +
+                            "-fx-border-width: 2; -fx-border-radius: 16;");
+                }
+            }
         });
         
         continueButton.setOnAction(e -> {
             ToggleButton selected = (ToggleButton) playerGroup.getSelectedToggle();
-            int numPlayers = Integer.parseInt(selected.getText());
+            int numPlayers = (int) selected.getUserData();
             ProcessLog.getInstance().logEvent("Select Player Count", "Number of players: " + numPlayers);
             showPlayerNames(numPlayers);
         });
         
-        setupBox.getChildren().addAll(header, instruction, playerCountBox, continueButton);
-        
-        mainScene = new Scene(setupBox);
+        Label note = new Label("Need more than four? Duplicate contestants to share a score board slot.");
+        note.setFont(Font.font("Segoe UI", FontWeight.SEMI_BOLD, 16));
+        note.setTextFill(Color.web("#E0E6FF"));
+        note.setWrapText(true);
+        note.setAlignment(Pos.CENTER);
+        note.setStyle("-fx-background-color: rgba(0,0,0,0.3); -fx-padding: 10 16; -fx-background-radius: 12;");
+        note.setMaxWidth(460);
+
+        setupBox.getChildren().addAll(header, instruction, playerCountBox, continueButton, note);
+
+        root.getChildren().add(setupBox);
+
+        mainScene = new Scene(root);
         primaryStage.setScene(mainScene);
     }
     
@@ -277,18 +395,27 @@ public class JeopardyAppGUI extends Application {
      * Show player name entry screen
      */
     private void showPlayerNames(int numPlayers) {
-        VBox namesBox = new VBox(20);
+        StackPane root = new StackPane();
+        root.setStyle("-fx-background-color: linear-gradient(#01021A, #04116C);");
+        root.setPadding(new Insets(40));
+        
+        VBox namesBox = new VBox(28);
         namesBox.setAlignment(Pos.CENTER);
-        namesBox.setStyle("-fx-background-color: #060CE9;");
-        namesBox.setPadding(new Insets(50));
+        namesBox.setPadding(new Insets(70));
+        namesBox.setSpacing(28);
+        namesBox.setMaxWidth(860);
+        namesBox.setStyle("-fx-background-color: rgba(0,0,0,0.45); -fx-background-radius: 30; " +
+                          "-fx-border-color: rgba(255,215,0,0.6); -fx-border-width: 2; -fx-border-radius: 28; " +
+                          "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 25, 0.2, 0, 12);");
         
         Text header = new Text("ENTER CONTESTANT NAMES");
-        header.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 42));
+        header.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 46));
         header.setFill(Color.WHITE);
+        header.setEffect(new DropShadow(18, Color.BLACK));
         
-        VBox inputsBox = new VBox(15);
+        VBox inputsBox = new VBox(20);
         inputsBox.setAlignment(Pos.CENTER);
-        inputsBox.setPadding(new Insets(20));
+        inputsBox.setPadding(new Insets(10));
         
         TextField[] nameFields = new TextField[numPlayers];
         
@@ -305,8 +432,9 @@ public class JeopardyAppGUI extends Application {
             nameField.setPromptText("Enter name");
             nameField.setFont(Font.font(jeopardyFontFamily, 18));
             nameField.setPrefWidth(300);
-            nameField.setStyle("-fx-background-color: white; -fx-text-fill: #060CE9; " +
-                             "-fx-padding: 10; -fx-font-weight: bold;");
+            nameField.setStyle("-fx-background-color: rgba(255,255,255,0.9); -fx-text-fill: #04116C; " +
+                             "-fx-padding: 12; -fx-font-weight: bold; -fx-background-radius: 10; " +
+                             "-fx-border-radius: 10; -fx-border-color: rgba(0,0,0,0.05);");
             
             nameFields[i] = nameField;
             
@@ -340,13 +468,33 @@ public class JeopardyAppGUI extends Application {
             }
         });
         
-        namesBox.getChildren().addAll(header, inputsBox, startGameButton);
+        Label helper = new Label("Pro tip: fun team names keep the energy high—feel free to improvise!");
+        helper.setFont(Font.font("Segoe UI", FontWeight.SEMI_BOLD, 16));
+        helper.setTextFill(Color.web("#E0E6FF"));
+        helper.setWrapText(true);
+        helper.setAlignment(Pos.CENTER);
+        helper.setStyle("-fx-background-color: rgba(0,0,0,0.3); -fx-padding: 10 16; -fx-background-radius: 12;");
+        helper.setMaxWidth(520);
         
-        ScrollPane scrollPane = new ScrollPane(namesBox);
+        namesBox.getChildren().addAll(header, inputsBox, startGameButton, helper);
+
+        StackPane namesWrapper = new StackPane(namesBox);
+        namesWrapper.setAlignment(Pos.CENTER);
+        namesWrapper.setPadding(new Insets(40));
+
+        ScrollPane scrollPane = new ScrollPane(namesWrapper);
         scrollPane.setFitToWidth(true);
-        scrollPane.setStyle("-fx-background: #060CE9; -fx-background-color: #060CE9;");
-        
-        mainScene = new Scene(scrollPane, 1000, 700);
+        scrollPane.setStyle("-fx-background: transparent; -fx-background-color: transparent;");
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        scrollPane.setPannable(true);
+
+        // Center the card and allow it to shrink from all sides
+        StackPane.setAlignment(scrollPane, Pos.CENTER);
+        StackPane.setMargin(scrollPane, new Insets(0));
+        root.getChildren().add(scrollPane);
+
+        mainScene = new Scene(root, 1000, 700);
         primaryStage.setScene(mainScene);
     }
     
@@ -355,13 +503,14 @@ public class JeopardyAppGUI extends Application {
      */
     private void showGameBoard() {
         BorderPane borderPane = new BorderPane();
-        borderPane.setStyle("-fx-background-color: #060CE9;");
+        borderPane.setStyle("-fx-background-color: linear-gradient(#01021A, #020D52);");
         
         // Top: Player info
         VBox topBox = new VBox(10);
         topBox.setAlignment(Pos.CENTER);
         topBox.setPadding(new Insets(20));
-        topBox.setStyle("-fx-background-color: #000080;");
+        topBox.setStyle("-fx-background-color: rgba(0,0,0,0.55); -fx-background-radius: 0 0 25 25; " +
+                        "-fx-border-color: rgba(255,215,0,0.4); -fx-border-width: 0 0 2 0;");
         
         Player currentPlayer = game.getCurrentPlayer();
         
@@ -384,14 +533,16 @@ public class JeopardyAppGUI extends Application {
         HBox bottomBox = new HBox(15);
         bottomBox.setAlignment(Pos.CENTER);
         bottomBox.setPadding(new Insets(15));
-        bottomBox.setStyle("-fx-background-color: #000080;");
+        bottomBox.setStyle("-fx-background-color: rgba(0,0,0,0.55); -fx-background-radius: 25 25 0 0; " +
+                   "-fx-border-color: rgba(255,215,0,0.4); -fx-border-width: 2 0 0 0;");
         
         Button quitButton = createSmallButton("QUIT GAME", 150, 40);
         quitButton.setOnAction(e -> confirmQuit());
         
         statusLabel = new Label("Select a category to continue...");
-        statusLabel.setFont(Font.font(jeopardyFontFamily, FontWeight.NORMAL, 16));
+        statusLabel.setFont(Font.font(jeopardyFontFamily, FontWeight.NORMAL, 18));
         statusLabel.setTextFill(Color.WHITE);
+        statusLabel.setStyle("-fx-background-color: rgba(0,0,0,0.35); -fx-padding: 8 16; -fx-background-radius: 16;");
         
         bottomBox.getChildren().addAll(statusLabel, quitButton);
         
@@ -425,6 +576,7 @@ public class JeopardyAppGUI extends Application {
         Text header = new Text("SELECT A CATEGORY");
         header.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 36));
         header.setFill(Color.WHITE);
+        header.setEffect(new DropShadow(18, Color.BLACK));
         
         GridPane categoryGrid = new GridPane();
         categoryGrid.setAlignment(Pos.CENTER);
@@ -440,18 +592,16 @@ public class JeopardyAppGUI extends Application {
             Button categoryBtn = new Button(category.toUpperCase());
             categoryBtn.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 22));
             categoryBtn.setPrefSize(400, 100);
-            categoryBtn.setStyle("-fx-background-color: #FFD700; -fx-text-fill: #060CE9; " +
-                               "-fx-background-radius: 15; -fx-border-color: white; " +
-                               "-fx-border-width: 4; -fx-border-radius: 15;");
+            categoryBtn.setStyle("-fx-background-color: rgba(255,255,255,0.15); -fx-text-fill: white; " +
+                               "-fx-background-radius: 18; -fx-border-color: rgba(255,215,0,0.8); " +
+                               "-fx-border-width: 3; -fx-border-radius: 18; -fx-padding: 10;");
             
             categoryBtn.setOnMouseEntered(e -> 
-                categoryBtn.setStyle("-fx-background-color: #FFA500; -fx-text-fill: white; " +
-                                   "-fx-background-radius: 15; -fx-border-color: white; " +
-                                   "-fx-border-width: 4; -fx-border-radius: 15;"));
+                categoryBtn.setStyle("-fx-background-color: linear-gradient(#FFD700, #FFB347); -fx-text-fill: #020D52; " +
+                                   "-fx-background-radius: 18; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 18;"));
             categoryBtn.setOnMouseExited(e -> 
-                categoryBtn.setStyle("-fx-background-color: #FFD700; -fx-text-fill: #060CE9; " +
-                                   "-fx-background-radius: 15; -fx-border-color: white; " +
-                                   "-fx-border-width: 4; -fx-border-radius: 15;"));
+                categoryBtn.setStyle("-fx-background-color: rgba(255,255,255,0.15); -fx-text-fill: white; " +
+                                   "-fx-background-radius: 18; -fx-border-color: rgba(255,215,0,0.8); -fx-border-width: 3; -fx-border-radius: 18; -fx-padding: 10;"));
             
             categoryBtn.setOnAction(e -> showValueSelection(category));
             
@@ -464,7 +614,12 @@ public class JeopardyAppGUI extends Application {
             }
         }
         
-        mainContainer.getChildren().addAll(header, categoryGrid);
+        VBox boardCard = new VBox(15, header, categoryGrid);
+        boardCard.setAlignment(Pos.CENTER);
+        boardCard.setStyle("-fx-background-color: rgba(0,0,0,0.45); -fx-background-radius: 30; " +
+                           "-fx-border-color: rgba(255,215,0,0.5); -fx-border-width: 2; -fx-border-radius: 28; " +
+                           "-fx-padding: 30; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 20, 0.2, 0, 8);");
+        mainContainer.getChildren().add(boardCard);
         statusLabel.setText("Choose your category...");
     }
     
@@ -483,6 +638,7 @@ public class JeopardyAppGUI extends Application {
         Text header = new Text(category.toUpperCase());
         header.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 36));
         header.setFill(Color.GOLD);
+        header.setEffect(new DropShadow(15, Color.BLACK));
         
         Text subHeader = new Text("SELECT POINT VALUE");
         subHeader.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 28));
@@ -496,18 +652,15 @@ public class JeopardyAppGUI extends Application {
             Button valueBtn = new Button("$" + value);
             valueBtn.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 32));
             valueBtn.setPrefSize(150, 150);
-            valueBtn.setStyle("-fx-background-color: #FFD700; -fx-text-fill: #060CE9; " +
-                            "-fx-background-radius: 20; -fx-border-color: white; " +
-                            "-fx-border-width: 5; -fx-border-radius: 20;");
+            valueBtn.setStyle("-fx-background-color: rgba(255,255,255,0.15); -fx-text-fill: white; " +
+                            "-fx-background-radius: 20; -fx-border-color: rgba(255,215,0,0.8); -fx-border-width: 4; -fx-border-radius: 20;");
             
             valueBtn.setOnMouseEntered(e -> 
-                valueBtn.setStyle("-fx-background-color: #FFA500; -fx-text-fill: white; " +
-                                "-fx-background-radius: 20; -fx-border-color: white; " +
-                                "-fx-border-width: 5; -fx-border-radius: 20;"));
+                valueBtn.setStyle("-fx-background-color: linear-gradient(#FFD700, #FFB347); -fx-text-fill: #020D52; " +
+                                "-fx-background-radius: 20; -fx-border-color: white; -fx-border-width: 4; -fx-border-radius: 20;"));
             valueBtn.setOnMouseExited(e -> 
-                valueBtn.setStyle("-fx-background-color: #FFD700; -fx-text-fill: #060CE9; " +
-                                "-fx-background-radius: 20; -fx-border-color: white; " +
-                                "-fx-border-width: 5; -fx-border-radius: 20;"));
+                valueBtn.setStyle("-fx-background-color: rgba(255,255,255,0.15); -fx-text-fill: white; " +
+                                "-fx-background-radius: 20; -fx-border-color: rgba(255,215,0,0.8); -fx-border-width: 4; -fx-border-radius: 20;"));
             
             valueBtn.setOnAction(e -> showQuestion(category, value));
             
@@ -517,7 +670,12 @@ public class JeopardyAppGUI extends Application {
         Button backBtn = createSmallButton("← BACK", 120, 40);
         backBtn.setOnAction(e -> showCategorySelection());
         
-        mainContainer.getChildren().addAll(header, subHeader, valuesBox, backBtn);
+        VBox valueCard = new VBox(18, header, subHeader, valuesBox, backBtn);
+        valueCard.setAlignment(Pos.CENTER);
+        valueCard.setStyle("-fx-background-color: rgba(0,0,0,0.45); -fx-background-radius: 30; " +
+                           "-fx-border-color: rgba(255,215,0,0.5); -fx-border-width: 2; -fx-border-radius: 28; " +
+                           "-fx-padding: 30; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 20, 0.2, 0, 8);");
+        mainContainer.getChildren().add(valueCard);
         statusLabel.setText("Choose your point value...");
     }
     
@@ -535,10 +693,11 @@ public class JeopardyAppGUI extends Application {
         
         VBox questionBox = new VBox(25);
         questionBox.setAlignment(Pos.CENTER);
-        questionBox.setPadding(new Insets(20));
-        questionBox.setMaxWidth(800);
-        questionBox.setStyle("-fx-background-color: #000080; -fx-background-radius: 20; " +
-                            "-fx-border-color: #FFD700; -fx-border-width: 5; -fx-border-radius: 20;");
+        questionBox.setPadding(new Insets(30));
+        questionBox.setMaxWidth(820);
+        questionBox.setStyle("-fx-background-color: rgba(0,0,0,0.55); -fx-background-radius: 30; " +
+                    "-fx-border-color: rgba(255,215,0,0.6); -fx-border-width: 2; -fx-border-radius: 28; " +
+                    "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 25, 0.2, 0, 12);");
         
         Label categoryLabel = new Label(category.toUpperCase() + " - $" + value);
         categoryLabel.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 24));
@@ -549,6 +708,16 @@ public class JeopardyAppGUI extends Application {
         questionText.setFill(Color.WHITE);
         questionText.setWrappingWidth(750);
         questionText.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
+
+        // Timer display
+        Label timerLabel = new Label("🕒 30s");
+        timerLabel.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 22));
+        timerLabel.setTextFill(Color.LIGHTGREEN);
+        timerLabel.setStyle("-fx-background-color: rgba(0,0,0,0.35); -fx-padding: 8 16; -fx-background-radius: 20;");
+
+        ProgressBar timerBar = new ProgressBar(1.0);
+        timerBar.setPrefWidth(360);
+        timerBar.setStyle("-fx-accent: #56F89A; -fx-control-inner-background: rgba(255,255,255,0.2);");
         
         VBox optionsBox = new VBox(15);
         optionsBox.setAlignment(Pos.CENTER);
@@ -581,16 +750,75 @@ public class JeopardyAppGUI extends Application {
         });
         
         submitBtn.setOnAction(e -> {
+            stopQuestionTimer();
             RadioButton selected = (RadioButton) answerGroup.getSelectedToggle();
             String answer = (String) selected.getUserData();
             
             Game.TurnResult result = game.playTurn(category, value, answer, defaultStrategy);
             showResult(result);
         });
-        
-        questionBox.getChildren().addAll(categoryLabel, questionText, optionsBox, submitBtn);
+
+        // Start 30-second countdown timer
+        startQuestionTimer(timerLabel, timerBar, () -> {
+            submitBtn.setDisable(true);
+            statusLabel.setText("Time's up! Moving on...");
+            Game.TurnResult result = game.playTurn(category, value, "", defaultStrategy);
+            showResult(result);
+        });
+
+        HBox actionRow = new HBox(20, timerLabel, submitBtn);
+        actionRow.setAlignment(Pos.CENTER);
+
+        questionBox.getChildren().addAll(categoryLabel, timerBar, questionText, optionsBox, actionRow);
         mainContainer.getChildren().add(questionBox);
         statusLabel.setText("Select your answer and click SUBMIT...");
+    }
+
+    /**
+     * Start a 30-second countdown for the current question
+     */
+    private void startQuestionTimer(Label timerLabel, ProgressBar timerBar, Runnable onTimeout) {
+        stopQuestionTimer();
+
+        final int totalSeconds = 30;
+        final int[] remaining = {totalSeconds};
+        timerLabel.setText("🕒 " + remaining[0] + "s");
+        timerBar.setProgress(1.0);
+
+        questionTimer = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
+            remaining[0]--;
+            timerLabel.setText("🕒 " + Math.max(remaining[0], 0) + "s");
+            double progress = Math.max(0, remaining[0] / (double) totalSeconds);
+            timerBar.setProgress(progress);
+
+            if (remaining[0] <= 5) {
+                timerLabel.setTextFill(Color.web("#FF6161"));
+                timerBar.setStyle("-fx-accent: #FF6161; -fx-control-inner-background: rgba(255,255,255,0.2);");
+            } else if (remaining[0] <= 10) {
+                timerLabel.setTextFill(Color.web("#FFC857"));
+                timerBar.setStyle("-fx-accent: #FFC857; -fx-control-inner-background: rgba(255,255,255,0.2);");
+            } else {
+                timerLabel.setTextFill(Color.LIGHTGREEN);
+                timerBar.setStyle("-fx-accent: #56F89A; -fx-control-inner-background: rgba(255,255,255,0.2);");
+            }
+
+            if (remaining[0] <= 0) {
+                stopQuestionTimer();
+                onTimeout.run();
+            }
+        }));
+        questionTimer.setCycleCount(totalSeconds);
+        questionTimer.playFromStart();
+    }
+
+    /**
+     * Stop and clear any active question timer
+     */
+    private void stopQuestionTimer() {
+        if (questionTimer != null) {
+            questionTimer.stop();
+            questionTimer = null;
+        }
     }
     
     /**
@@ -602,6 +830,9 @@ public class JeopardyAppGUI extends Application {
         VBox resultBox = new VBox(30);
         resultBox.setAlignment(Pos.CENTER);
         resultBox.setPadding(new Insets(40));
+        resultBox.setStyle("-fx-background-color: rgba(0,0,0,0.55); -fx-background-radius: 30; " +
+                   "-fx-border-color: rgba(255,215,0,0.6); -fx-border-width: 2; -fx-border-radius: 28; " +
+                   "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 25, 0.2, 0, 12);");
         
         boolean correct = result.isCorrect();
         String resultEmoji = correct ? "✅" : "❌";
@@ -615,7 +846,7 @@ public class JeopardyAppGUI extends Application {
         VBox detailsBox = new VBox(15);
         detailsBox.setAlignment(Pos.CENTER);
         detailsBox.setPadding(new Insets(20));
-        detailsBox.setStyle("-fx-background-color: rgba(0,0,0,0.5); -fx-background-radius: 15;");
+        detailsBox.setStyle("-fx-background-color: rgba(0,0,0,0.35); -fx-background-radius: 18; -fx-border-color: rgba(255,255,255,0.1); -fx-border-width: 1;");
         
         if (!correct) {
             Label correctAnswerLabel = new Label("Correct Answer: " + result.getCorrectAnswer());
@@ -656,23 +887,31 @@ public class JeopardyAppGUI extends Application {
         // End the game properly to finalize state
         game.endGame();
         
+        StackPane root = new StackPane();
+        root.setStyle("-fx-background-color: linear-gradient(#01021A, #020D52);");
+        root.setPadding(new Insets(40));
+
         VBox endBox = new VBox(30);
         endBox.setAlignment(Pos.CENTER);
-        endBox.setStyle("-fx-background-color: #060CE9;");
-        endBox.setPadding(new Insets(50));
-        
+        endBox.setPadding(new Insets(60));
+        endBox.setMaxWidth(880);
+        endBox.setStyle("-fx-background-color: rgba(0,0,0,0.55); -fx-background-radius: 30; " +
+                "-fx-border-color: rgba(255,215,0,0.8); -fx-border-width: 2; -fx-border-radius: 28; " +
+                        "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 25, 0.2, 0, 12);");
+
         Text header = new Text("🏆 GAME OVER 🏆");
-        header.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 56));
+        header.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 60));
         header.setFill(Color.GOLD);
-        
+        header.setEffect(new DropShadow(25, Color.BLACK));
+
         Text subHeader = new Text("FINAL RESULTS");
-        subHeader.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 36));
+        subHeader.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 40));
         subHeader.setFill(Color.WHITE);
-        
-        VBox scoresBox = new VBox(15);
+
+        VBox scoresBox = new VBox(12);
         scoresBox.setAlignment(Pos.CENTER);
-        scoresBox.setPadding(new Insets(30));
-        scoresBox.setStyle("-fx-background-color: rgba(0,0,0,0.3); -fx-background-radius: 15;");
+        scoresBox.setPadding(new Insets(22));
+        scoresBox.setStyle("-fx-background-color: rgba(0,0,0,0.35); -fx-background-radius: 20;");
         
         List<Player> rankedPlayers = new ArrayList<>(game.getPlayers());
         rankedPlayers.sort((p1, p2) -> Integer.compare(p2.getScore(), p1.getScore()));
@@ -688,15 +927,17 @@ public class JeopardyAppGUI extends Application {
             rank++;
         }
         
+        // Scrollable container to handle any player count gracefully
         // Report generation options
-        VBox reportBox = new VBox(15);
+        VBox reportBox = new VBox(12);
         reportBox.setAlignment(Pos.CENTER);
         reportBox.setPadding(new Insets(20));
+        reportBox.setStyle("-fx-background-color: rgba(0,0,0,0.35); -fx-background-radius: 20; -fx-border-color: rgba(255,255,255,0.05); -fx-border-width: 1;");
         
         Text reportHeader = new Text("📊 GENERATE REPORTS");
         reportHeader.setFont(Font.font(jeopardyFontFamily, FontWeight.BOLD, 24));
         reportHeader.setFill(Color.GOLD);
-        
+
         HBox reportButtons = new HBox(15);
         reportButtons.setAlignment(Pos.CENTER);
         
@@ -718,12 +959,11 @@ public class JeopardyAppGUI extends Application {
         reportBox.getChildren().addAll(reportHeader, reportButtons);
         
         endBox.getChildren().addAll(header, subHeader, scoresBox, reportBox, exitBtn);
-        
-        ScrollPane scrollPane = new ScrollPane(endBox);
-        scrollPane.setFitToWidth(true);
-        scrollPane.setStyle("-fx-background: #060CE9; -fx-background-color: #060CE9;");
-        
-        mainScene = new Scene(scrollPane, 1000, 700);
+
+        StackPane.setAlignment(endBox, Pos.CENTER);
+        root.getChildren().add(endBox);
+
+        mainScene = new Scene(root, 1000, 700);
         primaryStage.setScene(mainScene);
     }
     
