@@ -56,48 +56,13 @@ mvn exec:java '-Dexec.mainClass=com.comp3607.JeopardyApp'
 mvn exec:java -Dexec.mainClass="com.comp3607.JeopardyApp"
 ```
 
-## Test Coverage
+## Test Coverage (22 tests, 100% pass rate)
 
-### Unit Tests
-
-#### 1. QuestionTest
-- Tests question creation
-- Tests answer validation
-- Tests question options
-- Tests marking questions as answered
-
-#### 2. PlayerTest
-- Tests player creation
-- Tests score updates (correct/incorrect answers)
-- Tests turn history tracking
-- Tests player ID generation
-
-#### 3. GameTest
-- Tests game initialization
-- Tests adding players
-- Tests game start/end
-- Tests file loading
-- Tests current player tracking
-
-#### 4. ProcessLogTest
-- Tests singleton pattern
-- Tests event logging with full details
-- Tests simple event logging
-- Tests CSV log generation
-- Tests log file format
-
-#### 5. CategoryStrategyTest
-- Tests VariableStrategy validation
-- Tests ControlStructureStrategy validation
-- Tests points calculation
-- Tests strategy interchangeability
-
-#### 6. ReportGeneratorTest
-- Tests TXT report generation
-- Tests PDF report generation
-- Tests DOCX report generation
-- Tests report content accuracy
-- Tests unsupported format handling
+**GameTest** (6 tests) - Initialization, loading, gameplay  
+**QuestionTest** (5 tests) - Creation, validation, answered state  
+**ProcessLogTest** (4 tests) - Singleton, logging, CSV generation  
+**CategoryStrategyTest** (4 tests) - Strategy validation and scoring  
+**ReportGeneratorTest** (3 tests) - TXT, PDF, DOCX generation
 
 ### Integration Tests
 

@@ -1,21 +1,11 @@
 # Quick Start Guide
 
-> For complete documentation, see [README.md](README.md)
-
 ## Prerequisites
-Before running the game, ensure you have:
-- **Java 11 or higher** ([Download Java](https://www.oracle.com/java/technologies/javase-downloads.html))
-- **Maven 3.6 or higher** ([Download Maven](https://maven.apache.org/download.cgi))
-- **Git** (to clone the repository)
+- **Java 11+** ([Download](https://www.oracle.com/java/technologies/javase-downloads.html))
+- **Maven 3.6+** ([Download](https://maven.apache.org/download.cgi))
+- **Git**
 
-### Verify Installation
-```bash
-# Check Java version (should be 11 or higher)
-java -version
-
-# Check Maven version (should be 3.6 or higher)
-mvn -version
-```
+Verify: `java -version` and `mvn -version`
 
 ## Installation
 

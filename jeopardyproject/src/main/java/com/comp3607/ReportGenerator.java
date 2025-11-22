@@ -106,7 +106,7 @@ public class ReportGenerator {
     }
     
     /**
-     * Generate PDF report
+     * Generate PDF report with full turn-by-turn details
      */
     public void generatePDFReport(List<Player> players) throws IOException {
         String filename = REPORTS_DIR + "game_report.pdf";
@@ -114,42 +114,151 @@ public class ReportGenerator {
             PDPage page = new PDPage();
             document.addPage(page);
             
-            try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
-                contentStream.setFont(PDType1Font.HELVETICA_BOLD, 18);
-                contentStream.beginText();
-                contentStream.newLineAtOffset(50, 750);
-                contentStream.showText("JEOPARDY GAME SUMMARY REPORT");
-                contentStream.endText();
-                
-                contentStream.setFont(PDType1Font.HELVETICA, 12);
-                contentStream.beginText();
-                contentStream.newLineAtOffset(50, 720);
-                contentStream.showText("Generated: " + LocalDateTime.now().format(
-                    DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
-                contentStream.endText();
-                
-                // Final Scores
-                float yPosition = 680;
-                contentStream.setFont(PDType1Font.HELVETICA_BOLD, 14);
+            float yPosition = 750;
+            PDPageContentStream contentStream = new PDPageContentStream(document, page);
+            
+            // Title
+            contentStream.setFont(PDType1Font.HELVETICA_BOLD, 18);
+            contentStream.beginText();
+            contentStream.newLineAtOffset(50, yPosition);
+            contentStream.showText("JEOPARDY GAME SUMMARY REPORT");
+            contentStream.endText();
+            yPosition -= 30;
+            
+            // Date
+            contentStream.setFont(PDType1Font.HELVETICA, 12);
+            contentStream.beginText();
+            contentStream.newLineAtOffset(50, yPosition);
+            contentStream.showText("Generated: " + LocalDateTime.now().format(
+                DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+            contentStream.endText();
+            yPosition -= 30;
+            
+            // Final Scores
+            contentStream.setFont(PDType1Font.HELVETICA_BOLD, 14);
+            contentStream.beginText();
+            contentStream.newLineAtOffset(50, yPosition);
+            contentStream.showText("FINAL SCORES:");
+            contentStream.endText();
+            yPosition -= 20;
+            
+            contentStream.setFont(PDType1Font.HELVETICA, 11);
+            players.sort((p1, p2) -> Integer.compare(p2.getScore(), p1.getScore()));
+            for (int i = 0; i < players.size(); i++) {
+                Player player = players.get(i);
                 contentStream.beginText();
                 contentStream.newLineAtOffset(50, yPosition);
-                contentStream.showText("FINAL SCORES:");
+                contentStream.showText(String.format("%d. %s: %d points", 
+                    i + 1, player.getName(), player.getScore()));
                 contentStream.endText();
+                yPosition -= 15;
+            }
+            yPosition -= 20;
+            
+            // Turn-by-turn breakdown
+            contentStream.setFont(PDType1Font.HELVETICA_BOLD, 14);
+            contentStream.beginText();
+            contentStream.newLineAtOffset(50, yPosition);
+            contentStream.showText("DETAILED TURN-BY-TURN BREAKDOWN:");
+            contentStream.endText();
+            yPosition -= 25;
+            
+            contentStream.setFont(PDType1Font.HELVETICA, 10);
+            
+            for (Player player : players) {
+                // Check if we need a new page
+                if (yPosition < 100) {
+                    contentStream.close();
+                    page = new PDPage();
+                    document.addPage(page);
+                    contentStream = new PDPageContentStream(document, page);
+                    yPosition = 750;
+                }
                 
-                yPosition -= 20;
-                contentStream.setFont(PDType1Font.HELVETICA, 11);
-                players.sort((p1, p2) -> Integer.compare(p2.getScore(), p1.getScore()));
-                for (int i = 0; i < players.size(); i++) {
-                    Player player = players.get(i);
+                // Player name
+                contentStream.setFont(PDType1Font.HELVETICA_BOLD, 11);
+                contentStream.beginText();
+                contentStream.newLineAtOffset(50, yPosition);
+                contentStream.showText("Player: " + player.getName());
+                contentStream.endText();
+                yPosition -= 18;
+                
+                contentStream.setFont(PDType1Font.HELVETICA, 9);
+                List<Player.TurnRecord> turns = player.getTurnHistory();
+                for (int i = 0; i < turns.size(); i++) {
+                    Player.TurnRecord turn = turns.get(i);
+                    
+                    // Check space for turn details (need ~110 points for full turn)
+                    if (yPosition < 120) {
+                        contentStream.close();
+                        page = new PDPage();
+                        document.addPage(page);
+                        contentStream = new PDPageContentStream(document, page);
+                        yPosition = 750;
+                    }
+                    
                     contentStream.beginText();
                     contentStream.newLineAtOffset(50, yPosition);
-                    contentStream.showText(String.format("%d. %s: %d points", 
-                        i + 1, player.getName(), player.getScore()));
+                    contentStream.showText(String.format("Turn %d:", i + 1));
                     contentStream.endText();
-                    yPosition -= 15;
+                    yPosition -= 13;
+                    
+                    contentStream.beginText();
+                    contentStream.newLineAtOffset(60, yPosition);
+                    contentStream.showText(String.format("Category: %s", turn.getCategory()));
+                    contentStream.endText();
+                    yPosition -= 13;
+                    
+                    contentStream.beginText();
+                    contentStream.newLineAtOffset(60, yPosition);
+                    contentStream.showText(String.format("Question Value: %d points", turn.getQuestionValue()));
+                    contentStream.endText();
+                    yPosition -= 13;
+                    
+                    // Question text (truncate if too long)
+                    String questionText = turn.getQuestionText();
+                    if (questionText.length() > 75) {
+                        questionText = questionText.substring(0, 72) + "...";
+                    }
+                    contentStream.beginText();
+                    contentStream.newLineAtOffset(60, yPosition);
+                    contentStream.showText("Question: " + questionText);
+                    contentStream.endText();
+                    yPosition -= 13;
+                    
+                    // Given answer (truncate if too long)
+                    String givenAnswer = turn.getGivenAnswer();
+                    if (givenAnswer.length() > 70) {
+                        givenAnswer = givenAnswer.substring(0, 67) + "...";
+                    }
+                    contentStream.beginText();
+                    contentStream.newLineAtOffset(60, yPosition);
+                    contentStream.showText("Given Answer: " + givenAnswer);
+                    contentStream.endText();
+                    yPosition -= 13;
+                    
+                    contentStream.beginText();
+                    contentStream.newLineAtOffset(60, yPosition);
+                    contentStream.showText(String.format("Result: %s", turn.isCorrect() ? "CORRECT" : "INCORRECT"));
+                    contentStream.endText();
+                    yPosition -= 13;
+                    
+                    contentStream.beginText();
+                    contentStream.newLineAtOffset(60, yPosition);
+                    contentStream.showText(String.format("Points Earned: %+d", turn.getPointsEarned()));
+                    contentStream.endText();
+                    yPosition -= 13;
+                    
+                    contentStream.beginText();
+                    contentStream.newLineAtOffset(60, yPosition);
+                    contentStream.showText(String.format("Running Total: %d", turn.getRunningTotal()));
+                    contentStream.endText();
+                    yPosition -= 20;
                 }
+                yPosition -= 10;
             }
             
+            contentStream.close();
             document.save(filename);
             LOGGER.log(Level.INFO, "PDF report generated: {0}", filename);
         } catch (IOException e) {
@@ -220,6 +329,10 @@ public class ReportGenerator {
                     turnRun.setText(String.format("  Category: %s", turn.getCategory()));
                     turnRun.addBreak();
                     turnRun.setText(String.format("  Question Value: %d points", turn.getQuestionValue()));
+                    turnRun.addBreak();
+                    turnRun.setText(String.format("  Question: %s", turn.getQuestionText()));
+                    turnRun.addBreak();
+                    turnRun.setText(String.format("  Given Answer: %s", turn.getGivenAnswer()));
                     turnRun.addBreak();
                     turnRun.setText(String.format("  Result: %s", turn.isCorrect() ? "CORRECT" : "INCORRECT"));
                     turnRun.addBreak();

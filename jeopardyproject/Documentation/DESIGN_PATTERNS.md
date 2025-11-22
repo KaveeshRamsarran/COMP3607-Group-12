@@ -1,13 +1,11 @@
-# Design Patterns Documentation - Comprehensive Analysis
+# Design Patterns Documentation
 
-## Executive Summary
-This Jeopardy Game project implements **4 design patterns** (exceeding the requirement of ≥3):
-1. **Factory Pattern** - File parser creation
-2. **Singleton Pattern** - Process mining event log
-3. **Strategy Pattern** - Validation and scoring algorithms  
-4. **Template Method Pattern** - Report generation framework
-
-Each pattern addresses specific architectural challenges and demonstrates mastery of object-oriented design principles.
+## Summary
+Four design patterns implemented (exceeds requirement of ≥3):
+1. **Factory** - File parser creation (`FileParserFactory`)
+2. **Strategy** - Answer validation (`CategoryStrategy`)
+3. **Template Method** - Report generation (`ReportGenerator`)
+4. **Singleton** - Event logging (`ProcessLog`)
 
 ---
 
