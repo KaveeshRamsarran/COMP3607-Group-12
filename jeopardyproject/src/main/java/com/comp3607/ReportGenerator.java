@@ -21,6 +21,9 @@ public class ReportGenerator {
     private static final Logger LOGGER = Logger.getLogger(ReportGenerator.class.getName());
     private static final String REPORTS_DIR = "src/main/resources/reports/";
     
+    /** Default constructor */
+    public ReportGenerator() {}
+    
     /**
      * Ensure reports directory exists
      */
@@ -34,6 +37,9 @@ public class ReportGenerator {
     
     /**
      * Generate report in specified format
+     * @param players List of players
+     * @param format Report format (txt, pdf, docx)
+     * @throws IOException If report cannot be generated
      */
     public void generateReport(List<Player> players, String format) throws IOException {
         ensureReportsDirectoryExists();
@@ -54,8 +60,10 @@ public class ReportGenerator {
     
     /**
      * Generate TXT report with full turn-by-turn details
+     * @param players List of players
+     * @throws IOException If report cannot be generated
      */
-    public void generateTXTReport(List<Player> players) {
+    public void generateTXTReport(List<Player> players) throws IOException {
         String filename = REPORTS_DIR + "game_report.txt";
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
             writer.write("=====================================\n");
@@ -101,21 +109,31 @@ public class ReportGenerator {
             LOGGER.log(Level.INFO, "TXT report generated: {0}", filename);
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, "Error generating TXT report", e);
-            throw new RuntimeException("Failed to generate TXT report", e);
+            throw e;
         }
     }
     
     /**
      * Generate PDF report with full turn-by-turn details
+     * @param players List of players
+     * @throws IOException If report cannot be generated
      */
     public void generatePDFReport(List<Player> players) throws IOException {
         String filename = REPORTS_DIR + "game_report.pdf";
+        
+        // Delete existing file to ensure fresh generation
+        File pdfFile = new File(filename);
+        if (pdfFile.exists()) {
+            pdfFile.delete();
+        }
+        
+        PDPageContentStream contentStream = null;
         try (PDDocument document = new PDDocument()) {
             PDPage page = new PDPage();
             document.addPage(page);
             
             float yPosition = 750;
-            PDPageContentStream contentStream = new PDPageContentStream(document, page);
+            contentStream = new PDPageContentStream(document, page);
             
             // Title
             contentStream.setFont(PDType1Font.HELVETICA_BOLD, 18);
@@ -262,6 +280,13 @@ public class ReportGenerator {
             document.save(filename);
             LOGGER.log(Level.INFO, "PDF report generated: {0}", filename);
         } catch (IOException e) {
+            try {
+                if (contentStream != null) {
+                    contentStream.close();
+                }
+            } catch (IOException ex) {
+                LOGGER.log(Level.WARNING, "Error closing content stream", ex);
+            }
             LOGGER.log(Level.SEVERE, "Error generating PDF report", e);
             throw e;
         }
@@ -269,9 +294,18 @@ public class ReportGenerator {
     
     /**
      * Generate DOCX report
+     * @param players List of players
+     * @throws IOException If report cannot be generated
      */
     public void generateDOCXReport(List<Player> players) throws IOException {
         String filename = REPORTS_DIR + "game_report.docx";
+        
+        // Delete existing file to ensure fresh generation
+        File docxFile = new File(filename);
+        if (docxFile.exists()) {
+            docxFile.delete();
+        }
+        
         try (XWPFDocument document = new XWPFDocument()) {
             // Title
             XWPFParagraph title = document.createParagraph();

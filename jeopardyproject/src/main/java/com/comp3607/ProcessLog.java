@@ -25,6 +25,7 @@ public class ProcessLog {
     
     /**
      * Get singleton instance
+     * @return ProcessLog instance
      */
     public static synchronized ProcessLog getInstance() {
         if (instance == null) {
@@ -35,6 +36,7 @@ public class ProcessLog {
     
     /**
      * Set the current case ID (game session identifier)
+     * @param caseId Game session ID
      */
     public void setCaseId(String caseId) {
         this.currentCaseId = caseId;
@@ -42,6 +44,13 @@ public class ProcessLog {
     
     /**
      * Log a game event with full details
+     * @param playerId Player identifier
+     * @param activity Activity name
+     * @param category Question category
+     * @param questionValue Question value
+     * @param answerGiven Player's answer
+     * @param result Result of the answer
+     * @param scoreAfterPlay Score after this play
      */
     public void logEvent(String playerId, String activity, String category, 
                         Integer questionValue, String answerGiven, 
@@ -53,6 +62,8 @@ public class ProcessLog {
     
     /**
      * Log a simple event without player-specific details
+     * @param activity Activity name
+     * @param details Event details
      */
     public void logEvent(String activity, String details) {
         String timestamp = LocalDateTime.now().format(formatter);
@@ -99,6 +110,7 @@ public class ProcessLog {
     
     /**
      * Get all logged events
+     * @return Copy of events list
      */
     public List<LogEvent> getEvents() {
         return new ArrayList<>(events);
@@ -118,6 +130,18 @@ public class ProcessLog {
         private final String result;
         private final Integer scoreAfterPlay;
         
+        /**
+         * Creates a log event
+         * @param caseId Case ID
+         * @param playerId Player ID
+         * @param activity Activity name
+         * @param timestamp Event timestamp
+         * @param category Question category
+         * @param questionValue Question value
+         * @param answerGiven Player's answer
+         * @param result Result
+         * @param scoreAfterPlay Score after play
+         */
         public LogEvent(String caseId, String playerId, String activity, String timestamp,
                        String category, Integer questionValue, String answerGiven,
                        String result, Integer scoreAfterPlay) {
@@ -132,6 +156,10 @@ public class ProcessLog {
             this.scoreAfterPlay = scoreAfterPlay;
         }
         
+        /**
+         * Converts event to CSV line
+         * @return CSV formatted string
+         */
         public String toCsvLine() {
             return String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s",
                 nvl(caseId), nvl(playerId), nvl(activity), nvl(timestamp),
@@ -144,14 +172,55 @@ public class ProcessLog {
         }
         
         // Getters
+        /** @return Case ID */
         public String getCaseId() { return caseId; }
+        
+        /**
+         * Gets player ID
+         * @return Player ID
+         */
         public String getPlayerId() { return playerId; }
+        
+        /**
+         * Gets activity name
+         * @return Activity name
+         */
         public String getActivity() { return activity; }
+        
+        /**
+         * Gets timestamp
+         * @return Timestamp
+         */
         public String getTimestamp() { return timestamp; }
+        
+        /**
+         * Gets category
+         * @return Category
+         */
         public String getCategory() { return category; }
+        
+        /**
+         * Gets question value
+         * @return Question value
+         */
         public Integer getQuestionValue() { return questionValue; }
+        
+        /**
+         * Gets answer given
+         * @return Answer given
+         */
         public String getAnswerGiven() { return answerGiven; }
+        
+        /**
+         * Gets result
+         * @return Result
+         */
         public String getResult() { return result; }
+        
+        /**
+         * Gets score after play
+         * @return Score after play
+         */
         public Integer getScoreAfterPlay() { return scoreAfterPlay; }
     }
 }

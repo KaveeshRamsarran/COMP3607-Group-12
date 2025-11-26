@@ -23,6 +23,9 @@ public class Game {
     private boolean gameStarted;
     private boolean gameEnded;
 
+    /**
+     * Initializes a new game instance
+     */
     public Game() {
         this.players = new ArrayList<>();
         this.questions = new ArrayList<>();
@@ -48,6 +51,9 @@ public class Game {
 
     /**
      * Load questions from file using Factory pattern
+     * @param filePath Path to the question file
+     * @param fileType Type of file (csv, json, xml)
+     * @throws IOException If file cannot be loaded
      */
     public void loadQuestions(String filePath, String fileType) throws IOException {
         processLog.logEvent("Load File", "Attempting to load: " + filePath);
@@ -71,6 +77,7 @@ public class Game {
 
     /**
      * Add a player to the game
+     * @param playerName Name of the player
      */
     public void addPlayer(String playerName) {
         Player player = new Player(playerName);
@@ -81,6 +88,7 @@ public class Game {
 
     /**
      * Get available categories
+     * @return Set of available category names
      */
     public Set<String> getAvailableCategories() {
         return questionsByCategory.keySet().stream()
@@ -90,6 +98,8 @@ public class Game {
 
     /**
      * Get available question values for a category
+     * @param category Category name
+     * @return List of available point values
      */
     public List<Integer> getAvailableValues(String category) {
         return questionsByCategory.getOrDefault(category, new ArrayList<>()).stream()
@@ -102,6 +112,11 @@ public class Game {
 
     /**
      * Play a turn
+     * @param category Selected category
+     * @param value Question value
+     * @param answer Player's answer
+     * @param strategy Strategy for answer validation
+     * @return Result of the turn
      */
     public TurnResult playTurn(String category, int value, String answer, CategoryStrategy strategy) {
         if (!gameStarted) {
@@ -161,6 +176,7 @@ public class Game {
 
     /**
      * Check if game is complete
+     * @return true if all questions answered
      */
     public boolean isGameComplete() {
         return questions.stream().allMatch(Question::isAnswered);
@@ -176,6 +192,8 @@ public class Game {
 
     /**
      * Generate summary report
+     * @param format Report format (txt, pdf, docx)
+     * @throws IOException If report cannot be generated
      */
     public void generateSummaryReport(String format) throws IOException {
         processLog.logEvent("Generate Report", "Format: " + format);
@@ -206,22 +224,42 @@ public class Game {
 
     // Getters
     
+    /**
+     * Gets all players
+     * @return Copy of players list
+     */
     public List<Player> getPlayers() {
         return new ArrayList<>(players);
     }
 
+    /**
+     * Gets current player
+     * @return Current player
+     */
     public Player getCurrentPlayer() {
         return players.get(currentPlayerIndex);
     }
 
+    /**
+     * Gets all questions
+     * @return Copy of questions list
+     */
     public List<Question> getQuestions() {
         return new ArrayList<>(questions);
     }
     
+    /**
+     * Checks if game started
+     * @return true if game started
+     */
     public boolean isGameStarted() {
         return gameStarted;
     }
     
+    /**
+     * Checks if game ended
+     * @return true if game ended
+     */
     public boolean isGameEnded() {
         return gameEnded;
     }
@@ -235,6 +273,13 @@ public class Game {
         private final int pointsEarned;
         private final int newScore;
 
+        /**
+         * Creates turn result
+         * @param correct Whether answer was correct
+         * @param correctAnswer The correct answer
+         * @param pointsEarned Points earned/lost
+         * @param newScore Player's new score
+         */
         public TurnResult(boolean correct, String correctAnswer, int pointsEarned, int newScore) {
             this.correct = correct;
             this.correctAnswer = correctAnswer;
@@ -242,9 +287,16 @@ public class Game {
             this.newScore = newScore;
         }
 
+        /** @return true if answer was correct */
         public boolean isCorrect() { return correct; }
+        
+        /** @return The correct answer */
         public String getCorrectAnswer() { return correctAnswer; }
+        
+        /** @return Points earned/lost */
         public int getPointsEarned() { return pointsEarned; }
+        
+        /** @return Player's new score */
         public int getNewScore() { return newScore; }
     }
 }

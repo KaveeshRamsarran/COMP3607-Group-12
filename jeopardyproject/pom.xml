@@ -109,6 +109,42 @@
                     <mainClass>com.comp3607.JeopardyAppGUI</mainClass>
                 </configuration>
             </plugin>
+            <!-- JavaDoc Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.6.0</version>
+                <configuration>
+                    <show>public</show>
+                    <author>true</author>
+                    <version>true</version>
+                    <use>true</use>
+                    <windowtitle>Jeopardy Game API Documentation</windowtitle>
+                    <doctitle>Jeopardy Game API Documentation v1.0</doctitle>
+                    <overview>${basedir}/src/main/java/overview.html</overview>
+                    <header><![CDATA[<b>Jeopardy Game v1.0</b>]]></header>
+                    <bottom><![CDATA[<b>COMP3607 Group 12</b><br>Copyright &#169; 2025 COMP3607 Group 12. All Rights Reserved.]]></bottom>
+                    <links>
+                        <link>https://docs.oracle.com/en/java/javase/11/docs/api/</link>
+                    </links>
+                    <detectLinks>false</detectLinks>
+                    <detectJavaApiLink>true</detectJavaApiLink>
+                    <additionalOptions>
+                        <additionalOption>-html5</additionalOption>
+                        <additionalOption>-Xdoclint:none</additionalOption>
+                    </additionalOptions>
+                    <outputDirectory>${project.build.directory}/site</outputDirectory>
+                    <reportOutputDirectory>${project.build.directory}/site/apidocs</reportOutputDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 </project>

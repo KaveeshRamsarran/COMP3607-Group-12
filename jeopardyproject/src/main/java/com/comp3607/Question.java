@@ -15,6 +15,14 @@ public class Question {
     private final String correctAnswer;
     private boolean answered;
 
+    /**
+     * Creates a question
+     * @param category Question category
+     * @param value Point value
+     * @param questionText Question text
+     * @param options Answer options
+     * @param correctAnswer Correct answer
+     */
     public Question(String category, int value, String questionText, Map<String, String> options, String correctAnswer) {
         this.category = category;
         this.value = value;
@@ -24,36 +32,65 @@ public class Question {
         this.answered = false;
     }
 
+    /**
+     * Gets category
+     * @return Category name
+     */
     public String getCategory() {
         return category;
     }
 
+    /**
+     * Gets point value
+     * @return Point value
+     */
     public int getValue() {
         return value;
     }
 
+    /**
+     * Gets question text
+     * @return Question text
+     */
     public String getQuestionText() {
         return questionText;
     }
 
+    /**
+     * Gets answer options
+     * @return Copy of options map
+     */
     public Map<String, String> getOptions() {
         return new HashMap<>(options); // Return defensive copy
     }
 
+    /**
+     * Gets correct answer
+     * @return Correct answer
+     */
     public String getCorrectAnswer() {
         return correctAnswer;
     }
     
+    /**
+     * Checks if answered
+     * @return true if answered
+     */
     public boolean isAnswered() {
         return answered;
     }
     
+    /**
+     * Marks question as answered
+     */
     public void markAsAnswered() {
         this.answered = true;
     }
     
     /**
      * Validate if the provided answer is correct
+     * @param answer Player's answer
+     * @return true if correct
      */
     public boolean validateAnswer(String answer) {
         return correctAnswer.equalsIgnoreCase(answer.trim());
@@ -61,6 +98,7 @@ public class Question {
     
     /**
      * Get formatted question display
+     * @return Formatted question string
      */
     public String getFormattedQuestion() {
         StringBuilder sb = new StringBuilder();

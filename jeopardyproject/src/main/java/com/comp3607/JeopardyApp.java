@@ -17,12 +17,17 @@ public class JeopardyApp {
     private final Scanner scanner;
     private final CategoryStrategy defaultStrategy;
     
+    /** Initializes the console application */
     public JeopardyApp() {
         this.game = new Game();
         this.scanner = new Scanner(System.in);
         this.defaultStrategy = new VariableStrategy();
     }
     
+    /**
+     * Main entry point
+     * @param args Command line arguments
+     */
     public static void main(String[] args) {
         JeopardyApp app = new JeopardyApp();
         app.run();
@@ -57,9 +62,7 @@ public class JeopardyApp {
         } catch (RuntimeException e) {
             System.err.println("Runtime error: " + e.getMessage());
         } finally {
-            if (scanner != null) {
-                scanner.close();
-            }
+            scanner.close();
         }
     }
     
@@ -77,10 +80,14 @@ public class JeopardyApp {
         System.out.print("📄 Enter file type (csv/json/xml): ");
         String fileType = scanner.nextLine().trim();
         
-        System.out.print("\n⏳ Loading questions");
+        System.out.print("⏳ Loading questions");
         for (int i = 0; i < 3; i++) {
             System.out.print(".");
-            try { Thread.sleep(200); } catch (InterruptedException e) { }
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
         }
         
         game.loadQuestions(filePath, fileType);
@@ -241,7 +248,11 @@ public class JeopardyApp {
             System.out.print("⏳ Generating reports");
             for (int i = 0; i < 3; i++) {
                 System.out.print(".");
-                try { Thread.sleep(200); } catch (InterruptedException e) { }
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
             }
             System.out.println();
             
@@ -321,12 +332,6 @@ public class JeopardyApp {
         System.out.println("   ⚡ The higher the value, the harder the question");
         System.out.println("   🏆 The contestant with the most points wins!");
         System.out.println();
-    }
-    
-    private void displayGameBoard() {
-        System.out.println("╔══════════════════════════════════════════════════════════════╗");
-        System.out.println("║                     JEOPARDY GAME BOARD                      ║");
-        System.out.println("╚══════════════════════════════════════════════════════════════╝");
     }
     
     private void displayQuestion(Question question, String category, int value) {

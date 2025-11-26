@@ -1,0 +1,100 @@
+=====================================
+    JEOPARDY GAME SUMMARY REPORT     
+=====================================
+Generated: 2025-11-26 14:40:09
+
+FINAL SCORES:
+-------------------------------------
+1. sam: -300 points
+2. veesh: -600 points
+
+DETAILED TURN-BY-TURN BREAKDOWN:
+=====================================
+
+Player: sam
+-------------------------------------
+Turn 1:
+  Category: File Handling
+  Question Value: 500 points
+  Question: What happens if a file fails to open?
+  Given Answer: C
+  Result: CORRECT
+  Points Earned: +500
+  Running Total: 500
+
+Turn 2:
+  Category: Arrays
+  Question Value: 400 points
+  Question: What happens if you access out-of-range index?
+  Given Answer: C
+  Result: INCORRECT
+  Points Earned: -400
+  Running Total: 100
+
+Turn 3:
+  Category: File Handling
+  Question Value: 200 points
+  Question: Which stream is used to write to a file?
+  Given Answer: D
+  Result: INCORRECT
+  Points Earned: -200
+  Running Total: -100
+
+Turn 4:
+  Category: Arrays
+  Question Value: 300 points
+  Question: Which loop is best for iterating a fixed-size array?
+  Given Answer: C
+  Result: CORRECT
+  Points Earned: +300
+  Running Total: 200
+
+Turn 5:
+  Category: Control Structures
+  Question Value: 500 points
+  Question: How many times will the loop for(int i=0;i<3;i++) run?
+  Given Answer: C
+  Result: INCORRECT
+  Points Earned: -500
+  Running Total: -300
+
+
+Player: veesh
+-------------------------------------
+Turn 1:
+  Category: Control Structures
+  Question Value: 300 points
+  Question: Which loop always executes at least once?
+  Given Answer: A
+  Result: INCORRECT
+  Points Earned: -300
+  Running Total: -300
+
+Turn 2:
+  Category: Variables & Data Types
+  Question Value: 300 points
+  Question: What is the value of x after int x = 5/2;?
+  Given Answer: D
+  Result: INCORRECT
+  Points Earned: -300
+  Running Total: -600
+
+Turn 3:
+  Category: Control Structures
+  Question Value: 400 points
+  Question: Which keyword exits a loop immediately?
+  Given Answer: C
+  Result: INCORRECT
+  Points Earned: -400
+  Running Total: -1000
+
+Turn 4:
+  Category: File Handling
+  Question Value: 400 points
+  Question: Which function closes a file?
+  Given Answer: C
+  Result: CORRECT
+  Points Earned: +400
+  Running Total: -600
+
+

@@ -5,12 +5,16 @@ com\comp3607\Game.class
 com\comp3607\parsers\XMLParser.class
 com\comp3607\Player.class
 com\comp3607\parsers\CSVParser.class
+com\comp3607\parsers\package-info.class
 com\comp3607\ProcessLog.class
 com\comp3607\parsers\JSONParser.class
 com\comp3607\Player$TurnRecord.class
 com\comp3607\parsers\FileParser.class
+com\comp3607\patterns\package-info.class
 com\comp3607\ProcessLog$LogEvent.class
 com\comp3607\JeopardyAppGUI.class
+com\comp3607\package-info.class
+com\comp3607\strategies\package-info.class
 com\comp3607\strategies\CategoryStrategy.class
 com\comp3607\strategies\ControlStructureStrategy.class
 com\comp3607\parsers\FileParserFactory.class

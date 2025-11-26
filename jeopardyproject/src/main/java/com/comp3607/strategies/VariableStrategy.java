@@ -1,6 +1,13 @@
 package com.comp3607.strategies;
 
+/**
+ * Variable category strategy implementation
+ */
 public class VariableStrategy implements CategoryStrategy {
+    
+    /** Default constructor */
+    public VariableStrategy() {}
+    
     @Override
     public boolean validateAnswer(String answer, String correctAnswer) {
         return answer.equals(correctAnswer);

@@ -1,0 +1,94 @@
+@options
+@packages
+-classpath
+'C:/Users/Samuel Soman/.m2/repository/com/opencsv/opencsv/5.7.1/opencsv-5.7.1.jar;C:/Users/Samuel Soman/.m2/repository/org/apache/commons/commons-lang3/3.12.0/commons-lang3-3.12.0.jar;C:/Users/Samuel Soman/.m2/repository/org/apache/commons/commons-text/1.10.0/commons-text-1.10.0.jar;C:/Users/Samuel Soman/.m2/repository/commons-beanutils/commons-beanutils/1.9.4/commons-beanutils-1.9.4.jar;C:/Users/Samuel Soman/.m2/repository/commons-collections/commons-collections/3.2.2/commons-collections-3.2.2.jar;C:/Users/Samuel Soman/.m2/repository/org/apache/commons/commons-collections4/4.4/commons-collections4-4.4.jar;C:/Users/Samuel Soman/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.15.2/jackson-databind-2.15.2.jar;C:/Users/Samuel Soman/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.15.2/jackson-annotations-2.15.2.jar;C:/Users/Samuel Soman/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.15.2/jackson-core-2.15.2.jar;C:/Users/Samuel Soman/.m2/repository/javax/xml/bind/jaxb-api/2.3.1/jaxb-api-2.3.1.jar;C:/Users/Samuel Soman/.m2/repository/javax/activation/javax.activation-api/1.2.0/javax.activation-api-1.2.0.jar;C:/Users/Samuel Soman/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.8/jaxb-runtime-2.3.8.jar;C:/Users/Samuel Soman/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/2.3.3/jakarta.xml.bind-api-2.3.3.jar;C:/Users/Samuel Soman/.m2/repository/org/glassfish/jaxb/txw2/2.3.8/txw2-2.3.8.jar;C:/Users/Samuel Soman/.m2/repository/com/sun/istack/istack-commons-runtime/3.0.12/istack-commons-runtime-3.0.12.jar;C:/Users/Samuel Soman/.m2/repository/org/apache/pdfbox/pdfbox/2.0.29/pdfbox-2.0.29.jar;C:/Users/Samuel Soman/.m2/repository/org/apache/pdfbox/fontbox/2.0.29/fontbox-2.0.29.jar;C:/Users/Samuel Soman/.m2/repository/commons-logging/commons-logging/1.2/commons-logging-1.2.jar;C:/Users/Samuel Soman/.m2/repository/org/apache/poi/poi-ooxml/5.2.3/poi-ooxml-5.2.3.jar;C:/Users/Samuel Soman/.m2/repository/org/apache/poi/poi-ooxml-lite/5.2.3/poi-ooxml-lite-5.2.3.jar;C:/Users/Samuel Soman/.m2/repository/org/apache/xmlbeans/xmlbeans/5.1.1/xmlbeans-5.1.1.jar;C:/Users/Samuel Soman/.m2/repository/org/apache/commons/commons-compress/1.21/commons-compress-1.21.jar;C:/Users/Samuel Soman/.m2/repository/commons-io/commons-io/2.11.0/commons-io-2.11.0.jar;C:/Users/Samuel Soman/.m2/repository/com/github/virtuald/curvesapi/1.07/curvesapi-1.07.jar;C:/Users/Samuel Soman/.m2/repository/org/apache/logging/log4j/log4j-api/2.18.0/log4j-api-2.18.0.jar;C:/Users/Samuel Soman/.m2/repository/org/apache/poi/poi/5.2.3/poi-5.2.3.jar;C:/Users/Samuel Soman/.m2/repository/commons-codec/commons-codec/1.15/commons-codec-1.15.jar;C:/Users/Samuel Soman/.m2/repository/org/apache/commons/commons-math3/3.6.1/commons-math3-3.6.1.jar;C:/Users/Samuel Soman/.m2/repository/com/zaxxer/SparseBitSet/1.2/SparseBitSet-1.2.jar;C:/Users/Samuel Soman/.m2/repository/org/openjfx/javafx-controls/17.0.2/javafx-controls-17.0.2.jar;C:/Users/Samuel Soman/.m2/repository/org/openjfx/javafx-controls/17.0.2/javafx-controls-17.0.2-win.jar;C:/Users/Samuel Soman/.m2/repository/org/openjfx/javafx-graphics/17.0.2/javafx-graphics-17.0.2.jar;C:/Users/Samuel Soman/.m2/repository/org/openjfx/javafx-graphics/17.0.2/javafx-graphics-17.0.2-win.jar;C:/Users/Samuel Soman/.m2/repository/org/openjfx/javafx-base/17.0.2/javafx-base-17.0.2.jar;C:/Users/Samuel Soman/.m2/repository/org/openjfx/javafx-base/17.0.2/javafx-base-17.0.2-win.jar;C:/Users/Samuel Soman/.m2/repository/org/openjfx/javafx-fxml/17.0.2/javafx-fxml-17.0.2.jar;C:/Users/Samuel Soman/.m2/repository/org/openjfx/javafx-fxml/17.0.2/javafx-fxml-17.0.2-win.jar'
+-encoding
+'UTF-8'
+-overview
+'C:/Users/Samuel Soman/COMP3607-Group-12/jeopardyproject/src/main/java/overview.html'
+-public
+-source
+'11'
+-sourcepath
+'C:/Users/Samuel Soman/COMP3607-Group-12/jeopardyproject/src/main/java;C:/Users/Samuel Soman/COMP3607-Group-12/jeopardyproject/target/generated-sources/annotations'
+-html5
+-Xdoclint:none
+-author
+-bottom
+'<b>COMP3607 Group 12</b><br>Copyright &#169; 2025 COMP3607 Group 12. All Rights Reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/Samuel Soman/COMP3607-Group-12/jeopardyproject/target/site'
+-docencoding
+'UTF-8'
+-doctitle
+'Jeopardy Game API Documentation v1.0'
+-header
+'<b>Jeopardy Game v1.0</b>'
+-link
+'https://docs.oracle.com/en/java/javase/11/docs/api'
+-linkoffline
+'https://docs.oracle.com/en/java/javase/11/docs/api' 'C:/Users/Samuel Soman/COMP3607-Group-12/jeopardyproject/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'Jeopardy Game API Documentation'
+com.comp3607
+com.comp3607.parsers
+com.comp3607.patterns
+com.comp3607.strategies
+C:\Users\Samuel Soman\.m2\repository\com\opencsv\opencsv\5.7.1\opencsv-5.7.1.jar = 1763591924596
+C:\Users\Samuel Soman\.m2\repository\org\apache\commons\commons-lang3\3.12.0\commons-lang3-3.12.0.jar = 1762468586590
+C:\Users\Samuel Soman\.m2\repository\org\apache\commons\commons-text\1.10.0\commons-text-1.10.0.jar = 1763591924916
+C:\Users\Samuel Soman\.m2\repository\commons-beanutils\commons-beanutils\1.9.4\commons-beanutils-1.9.4.jar = 1763321357180
+C:\Users\Samuel Soman\.m2\repository\commons-collections\commons-collections\3.2.2\commons-collections-3.2.2.jar = 1763321357178
+C:\Users\Samuel Soman\.m2\repository\org\apache\commons\commons-collections4\4.4\commons-collections4-4.4.jar = 1763321357267
+C:\Users\Samuel Soman\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.15.2\jackson-databind-2.15.2.jar = 1763591925028
+C:\Users\Samuel Soman\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.15.2\jackson-annotations-2.15.2.jar = 1763591924709
+C:\Users\Samuel Soman\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.15.2\jackson-core-2.15.2.jar = 1763591924738
+C:\Users\Samuel Soman\.m2\repository\javax\xml\bind\jaxb-api\2.3.1\jaxb-api-2.3.1.jar = 1763590977051
+C:\Users\Samuel Soman\.m2\repository\javax\activation\javax.activation-api\1.2.0\javax.activation-api-1.2.0.jar = 1763590976886
+C:\Users\Samuel Soman\.m2\repository\org\glassfish\jaxb\jaxb-runtime\2.3.8\jaxb-runtime-2.3.8.jar = 1763591924986
+C:\Users\Samuel Soman\.m2\repository\jakarta\xml\bind\jakarta.xml.bind-api\2.3.3\jakarta.xml.bind-api-2.3.3.jar = 1763591925014
+C:\Users\Samuel Soman\.m2\repository\org\glassfish\jaxb\txw2\2.3.8\txw2-2.3.8.jar = 1763591925027
+C:\Users\Samuel Soman\.m2\repository\com\sun\istack\istack-commons-runtime\3.0.12\istack-commons-runtime-3.0.12.jar = 1763591925986
+C:\Users\Samuel Soman\.m2\repository\org\apache\pdfbox\pdfbox\2.0.29\pdfbox-2.0.29.jar = 1763591925521
+C:\Users\Samuel Soman\.m2\repository\org\apache\pdfbox\fontbox\2.0.29\fontbox-2.0.29.jar = 1763591925446
+C:\Users\Samuel Soman\.m2\repository\commons-logging\commons-logging\1.2\commons-logging-1.2.jar = 1763321356919
+C:\Users\Samuel Soman\.m2\repository\org\apache\poi\poi-ooxml\5.2.3\poi-ooxml-5.2.3.jar = 1763591925483
+C:\Users\Samuel Soman\.m2\repository\org\apache\poi\poi-ooxml-lite\5.2.3\poi-ooxml-lite-5.2.3.jar = 1763591926412
+C:\Users\Samuel Soman\.m2\repository\org\apache\xmlbeans\xmlbeans\5.1.1\xmlbeans-5.1.1.jar = 1763591925990
+C:\Users\Samuel Soman\.m2\repository\org\apache\commons\commons-compress\1.21\commons-compress-1.21.jar = 1763321435496
+C:\Users\Samuel Soman\.m2\repository\commons-io\commons-io\2.11.0\commons-io-2.11.0.jar = 1762468586542
+C:\Users\Samuel Soman\.m2\repository\com\github\virtuald\curvesapi\1.07\curvesapi-1.07.jar = 1763591926106
+C:\Users\Samuel Soman\.m2\repository\org\apache\logging\log4j\log4j-api\2.18.0\log4j-api-2.18.0.jar = 1763591926366
+C:\Users\Samuel Soman\.m2\repository\org\apache\poi\poi\5.2.3\poi-5.2.3.jar = 1763591925755
+C:\Users\Samuel Soman\.m2\repository\commons-codec\commons-codec\1.15\commons-codec-1.15.jar = 1763591925767
+C:\Users\Samuel Soman\.m2\repository\org\apache\commons\commons-math3\3.6.1\commons-math3-3.6.1.jar = 1763591925737
+C:\Users\Samuel Soman\.m2\repository\com\zaxxer\SparseBitSet\1.2\SparseBitSet-1.2.jar = 1763591926068
+C:\Users\Samuel Soman\.m2\repository\org\openjfx\javafx-controls\17.0.2\javafx-controls-17.0.2.jar = 1763761976585
+C:\Users\Samuel Soman\.m2\repository\org\openjfx\javafx-controls\17.0.2\javafx-controls-17.0.2-win.jar = 1763761977454
+C:\Users\Samuel Soman\.m2\repository\org\openjfx\javafx-graphics\17.0.2\javafx-graphics-17.0.2.jar = 1763761976880
+C:\Users\Samuel Soman\.m2\repository\org\openjfx\javafx-graphics\17.0.2\javafx-graphics-17.0.2-win.jar = 1763761978012
+C:\Users\Samuel Soman\.m2\repository\org\openjfx\javafx-base\17.0.2\javafx-base-17.0.2.jar = 1763761976928
+C:\Users\Samuel Soman\.m2\repository\org\openjfx\javafx-base\17.0.2\javafx-base-17.0.2-win.jar = 1763761977189
+C:\Users\Samuel Soman\.m2\repository\org\openjfx\javafx-fxml\17.0.2\javafx-fxml-17.0.2.jar = 1763761977175
+C:\Users\Samuel Soman\.m2\repository\org\openjfx\javafx-fxml\17.0.2\javafx-fxml-17.0.2-win.jar = 1763761977268
+C:\Users\Samuel Soman\COMP3607-Group-12\jeopardyproject\src\main\java\overview.html = 1764179622868
+C:\Users\Samuel Soman\COMP3607-Group-12\jeopardyproject\src\main\java = 1764179215298
+C:\Users\Samuel Soman\COMP3607-Group-12\jeopardyproject\target\generated-sources\annotations = 1764182320262
+C:\Users\Samuel Soman\COMP3607-Group-12\jeopardyproject\target\site\allclasses-index.html = 1764182333840
+C:\Users\Samuel Soman\COMP3607-Group-12\jeopardyproject\target\site\allpackages-index.html = 1764182333848
+C:\Users\Samuel Soman\COMP3607-Group-12\jeopardyproject\target\site\element-list = 1764182333463
+C:\Users\Samuel Soman\COMP3607-Group-12\jeopardyproject\target\site\help-doc.html = 1764182333935
+C:\Users\Samuel Soman\COMP3607-Group-12\jeopardyproject\target\site\index-all.html = 1764182333912
+C:\Users\Samuel Soman\COMP3607-Group-12\jeopardyproject\target\site\index.html = 1764182333803
+C:\Users\Samuel Soman\COMP3607-Group-12\jeopardyproject\target\site\member-search-index.js = 1764182333861
+C:\Users\Samuel Soman\COMP3607-Group-12\jeopardyproject\target\site\module-search-index.js = 1764182333851
+C:\Users\Samuel Soman\COMP3607-Group-12\jeopardyproject\target\site\overview-summary.html = 1764182333920
+C:\Users\Samuel Soman\COMP3607-Group-12\jeopardyproject\target\site\overview-tree.html = 1764182333770
+C:\Users\Samuel Soman\COMP3607-Group-12\jeopardyproject\target\site\package-search-index.js = 1764182333855
+C:\Users\Samuel Soman\COMP3607-Group-12\jeopardyproject\target\site\search.html = 1764182333916
+C:\Users\Samuel Soman\COMP3607-Group-12\jeopardyproject\target\site\tag-search-index.js = 1764182333863
+C:\Users\Samuel Soman\COMP3607-Group-12\jeopardyproject\target\site\type-search-index.js = 1764182333857

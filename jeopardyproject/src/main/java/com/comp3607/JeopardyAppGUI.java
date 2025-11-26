@@ -38,6 +38,9 @@ public class JeopardyAppGUI extends Application {
     private Scene mainScene;
     private String jeopardyFontFamily = "Impact"; // Default font family (Jeopardy-themed)
     
+    /** Default constructor */
+    public JeopardyAppGUI() {}
+    
     // UI Components
     private VBox mainContainer;
     private Label statusLabel;
@@ -1124,6 +1127,10 @@ public class JeopardyAppGUI extends Application {
         radio.setStyle("-fx-text-fill: white;");
     }
     
+    /**
+     * Main entry point for JavaFX application
+     * @param args Command line arguments
+     */
     public static void main(String[] args) {
         launch(args);
     }

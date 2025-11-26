@@ -1,6 +1,12 @@
 package com.comp3607.strategies;
 
+/**
+ * Control Structure category strategy implementation
+ */
 public class ControlStructureStrategy implements CategoryStrategy {
+    
+    /** Default constructor */
+    public ControlStructureStrategy() {}
 
     @Override
     public boolean validateAnswer(String answer, String correctAnswer) {

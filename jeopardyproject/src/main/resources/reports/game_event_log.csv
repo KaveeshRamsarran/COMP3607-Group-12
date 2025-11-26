@@ -1,14 +1,39 @@
 Case_ID,Player_ID,Activity,Timestamp,Category,Question_Value,Answer_Given,Result,Score_After_Play
-GAME_1763843000453,SYSTEM,Load File,2025-11-22T16:23:31,Attempting to load: C:\Users\Samuel Soman\COMP3607-Group-12\jeopardyproject\src\main\resources\data\sample_game_CSV.csv,,,,
-GAME_1763843000453,SYSTEM,File Loaded Successfully,2025-11-22T16:23:31,Loaded 25 questions,,,,
-GAME_1763843000453,SYSTEM,Select Player Count,2025-11-22T16:23:33,Number of players: 1,,,,
-GAME_1763843000453,DGG,Enter Player Name,2025-11-22T16:23:34,dgg,,,,0
-GAME_1763843000453,SYSTEM,Start Game,2025-11-22T16:23:34,Game Started,,,,
-GAME_1763843000453,DGG,Select Category,2025-11-22T16:23:38,Functions,,,,0
-GAME_1763843000453,DGG,Select Question,2025-11-22T16:23:38,Functions,500,,,0
-GAME_1763843000453,DGG,Answer Question,2025-11-22T16:23:38,Functions,500,B,Correct,500
-GAME_1763843000453,SYSTEM,Exit Game,2025-11-22T16:23:42,Game Ended,,,,
-GAME_1763843000453,SYSTEM,Generate Report,2025-11-22T16:23:48,Format: txt,,,,
-GAME_1763843000453,SYSTEM,Generate Report,2025-11-22T16:23:50,Format: pdf,,,,
-GAME_1763843000453,SYSTEM,Generate Report,2025-11-22T16:23:52,Format: docx,,,,
-GAME_1763843000453,SYSTEM,Generate Event Log,2025-11-22T16:23:54,Creating process mining log,,,,
+GAME_1764182349315,SYSTEM,Load File,2025-11-26T14:39:16,Attempting to load: C:\Users\Samuel Soman\COMP3607-Group-12\jeopardyproject\src\main\resources\data\sample_game_JSON.json,,,,
+GAME_1764182349315,SYSTEM,File Loaded Successfully,2025-11-26T14:39:16,Loaded 25 questions,,,,
+GAME_1764182349315,SYSTEM,Select Player Count,2025-11-26T14:39:22,Number of players: 2,,,,
+GAME_1764182349315,SAM,Enter Player Name,2025-11-26T14:39:28,sam,,,,0
+GAME_1764182349315,VEESH,Enter Player Name,2025-11-26T14:39:28,veesh,,,,0
+GAME_1764182349315,SYSTEM,Start Game,2025-11-26T14:39:28,Game Started,,,,
+GAME_1764182349315,SAM,Select Category,2025-11-26T14:39:35,File Handling,,,,0
+GAME_1764182349315,SAM,Select Question,2025-11-26T14:39:35,File Handling,500,,,0
+GAME_1764182349315,SAM,Answer Question,2025-11-26T14:39:35,File Handling,500,C,Correct,500
+GAME_1764182349315,VEESH,Select Category,2025-11-26T14:39:39,Control Structures,,,,0
+GAME_1764182349315,VEESH,Select Question,2025-11-26T14:39:39,Control Structures,300,,,0
+GAME_1764182349315,VEESH,Answer Question,2025-11-26T14:39:39,Control Structures,300,A,Incorrect,-300
+GAME_1764182349315,SAM,Select Category,2025-11-26T14:39:42,Arrays,,,,500
+GAME_1764182349315,SAM,Select Question,2025-11-26T14:39:42,Arrays,400,,,500
+GAME_1764182349315,SAM,Answer Question,2025-11-26T14:39:42,Arrays,400,C,Incorrect,100
+GAME_1764182349315,VEESH,Select Category,2025-11-26T14:39:45,Variables & Data Types,,,,-300
+GAME_1764182349315,VEESH,Select Question,2025-11-26T14:39:45,Variables & Data Types,300,,,-300
+GAME_1764182349315,VEESH,Answer Question,2025-11-26T14:39:45,Variables & Data Types,300,D,Incorrect,-600
+GAME_1764182349315,SAM,Select Category,2025-11-26T14:39:48,File Handling,,,,100
+GAME_1764182349315,SAM,Select Question,2025-11-26T14:39:48,File Handling,200,,,100
+GAME_1764182349315,SAM,Answer Question,2025-11-26T14:39:48,File Handling,200,D,Incorrect,-100
+GAME_1764182349315,VEESH,Select Category,2025-11-26T14:39:51,Control Structures,,,,-600
+GAME_1764182349315,VEESH,Select Question,2025-11-26T14:39:51,Control Structures,400,,,-600
+GAME_1764182349315,VEESH,Answer Question,2025-11-26T14:39:51,Control Structures,400,C,Incorrect,-1000
+GAME_1764182349315,SAM,Select Category,2025-11-26T14:39:56,Arrays,,,,-100
+GAME_1764182349315,SAM,Select Question,2025-11-26T14:39:56,Arrays,300,,,-100
+GAME_1764182349315,SAM,Answer Question,2025-11-26T14:39:56,Arrays,300,C,Correct,200
+GAME_1764182349315,VEESH,Select Category,2025-11-26T14:40:01,File Handling,,,,-1000
+GAME_1764182349315,VEESH,Select Question,2025-11-26T14:40:01,File Handling,400,,,-1000
+GAME_1764182349315,VEESH,Answer Question,2025-11-26T14:40:01,File Handling,400,C,Correct,-600
+GAME_1764182349315,SAM,Select Category,2025-11-26T14:40:04,Control Structures,,,,200
+GAME_1764182349315,SAM,Select Question,2025-11-26T14:40:04,Control Structures,500,,,200
+GAME_1764182349315,SAM,Answer Question,2025-11-26T14:40:04,Control Structures,500,C,Incorrect,-300
+GAME_1764182349315,SYSTEM,Exit Game,2025-11-26T14:40:07,Game Ended,,,,
+GAME_1764182349315,SYSTEM,Generate Report,2025-11-26T14:40:09,Format: txt,,,,
+GAME_1764182349315,SYSTEM,Generate Report,2025-11-26T14:40:10,Format: pdf,,,,
+GAME_1764182349315,SYSTEM,Generate Report,2025-11-26T14:40:12,Format: docx,,,,
+GAME_1764182349315,SYSTEM,Generate Event Log,2025-11-26T14:40:14,Creating process mining log,,,,

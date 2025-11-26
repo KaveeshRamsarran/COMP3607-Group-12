@@ -17,6 +17,9 @@ import java.util.Map;
  */
 public class CSVParser implements FileParser {
     
+    /** Default constructor */
+    public CSVParser() {}
+    
     @Override
     public List<Question> parseFile(String filePath) throws IOException {
         List<Question> questions = new ArrayList<>();

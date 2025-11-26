@@ -20,6 +20,9 @@ import java.util.Map;
  */
 public class XMLParser implements FileParser {
     
+    /** Default constructor */
+    public XMLParser() {}
+    
     @Override
     public List<Question> parseFile(String filePath) throws IOException {
         List<Question> questions = new ArrayList<>();
@@ -69,14 +72,6 @@ public class XMLParser implements FileParser {
         }
         
         return questions;
-    }
-    
-    private String getElementTextContent(Element parent, String tagName) {
-        NodeList nodeList = parent.getElementsByTagName(tagName);
-        if (nodeList.getLength() > 0) {
-            return nodeList.item(0).getTextContent().trim();
-        }
-        return "";
     }
     
     private String getElementText(Element parent, String... tagNames) {

@@ -19,6 +19,9 @@ public class JSONParser implements FileParser {
     
     private final ObjectMapper objectMapper = new ObjectMapper();
     
+    /** Default constructor */
+    public JSONParser() {}
+    
     @Override
     public List<Question> parseFile(String filePath) throws IOException {
         List<Question> questions = new ArrayList<>();

@@ -6,6 +6,9 @@ package com.comp3607.parsers;
  */
 public class FileParserFactory {
     
+    /** Default constructor */
+    public FileParserFactory() {}
+    
     /**
      * Creates appropriate parser based on file type
      * @param fileType The type of file (csv, json, xml)
