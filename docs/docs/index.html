@@ -52,14 +52,19 @@ loadScripts(document, 'script');</script>
 <h1 class="title">Jeopardy Game API Documentation v1.0</h1>
 </div>
 <div class="block"><h1 id="jeopardy-game---trivia-application-heading">Jeopardy Game - Trivia Application</h1>
-
+
+
 <h2 id="project-overview-heading">Project Overview</h2>
 <p>
-    A comprehensive Jeopardy-style trivia game application built with Java, demonstrating
-    SOLID principles and multiple design patterns. Features both console and GUI interfaces,
-    multiple file format support, and comprehensive game reporting.
+    A comprehensive Jeopardy-style trivia game application built with Java, demonstrating
+
+    SOLID principles and multiple design patterns. Features both console and GUI interfaces,
+
+    multiple file format support, and comprehensive game reporting.
+
 </p>
-
+
+
 <h2 id="key-features-heading">Key Features</h2>
 <ul>
     <li><b>Dual Interface</b>: Console (JeopardyApp) and GUI (JeopardyAppGUI) versions</li>
@@ -68,7 +73,8 @@ loadScripts(document, 'script');</script>
     <li><b>Rich Reporting</b>: Generate reports in TXT, PDF, or DOCX formats</li>
     <li><b>Score Tracking</b>: Complete turn-by-turn history for all players</li>
 </ul>
-
+
+
 <h2 id="architecture-heading">Architecture</h2>
 <p>The application is organized into several packages:</p>
 <ul>
@@ -77,19 +83,23 @@ loadScripts(document, 'script');</script>
     <li><b>com.comp3607.strategies</b> - Answer validation strategies</li>
     <li><b>com.comp3607.patterns</b> - Design pattern examples</li>
 </ul>
-
+
+
 <h2 id="design-patterns-heading">Design Patterns</h2>
 <dl>
     <dt>Singleton Pattern</dt>
     <dd>ProcessLog ensures single instance for event logging across the application</dd>
-    
+    
+
     <dt>Factory Pattern</dt>
     <dd>FileParserFactory creates appropriate parsers based on file type</dd>
-    
+    
+
     <dt>Strategy Pattern</dt>
     <dd>CategoryStrategy allows flexible answer validation and scoring algorithms</dd>
 </dl>
-
+
+
 <h2 id="solid-principles-heading">SOLID Principles</h2>
 <ul>
     <li><b>Single Responsibility</b>: Each class has one clear purpose</li>
@@ -98,30 +108,33 @@ loadScripts(document, 'script');</script>
     <li><b>Interface Segregation</b>: Focused interfaces (FileParser, CategoryStrategy)</li>
     <li><b>Dependency Inversion</b>: Depends on abstractions, not concrete classes</li>
 </ul>
-
+
+
 <h2 id="getting-started-heading">Getting Started</h2>
 <p>To run the application:</p>
 <pre>
-# Console version
-mvn exec:java -Dexec.mainClass="com.comp3607.JeopardyApp"
-
-# GUI version
-mvn javafx:run
-
-# Or build and run JAR
-mvn clean package
-java -jar target/jeopardy-game-1.0-SNAPSHOT.jar
+# Console version
+
+mvn exec:java -Dexec.mainClass="com.comp3607.JeopardyApp"
+
+
+
+# GUI version
+
+mvn javafx:run
+
+
+
+# Or build and run JAR
+
+mvn clean package
+
+java -jar target/jeopardy-game-1.0-SNAPSHOT.jar
+
 </pre>
-
-<h2 id="documentation-heading">Documentation</h2>
-<p>For detailed documentation, see:</p>
-<ul>
-    <li><a href="Documentation/QUICK_START.md">Quick Start Guide</a></li>
-    <li><a href="Documentation/DESIGN_PATTERNS.md">Design Patterns</a></li>
-    <li><a href="Documentation/SOLID_PRINCIPLES.md">SOLID Principles</a></li>
-    <li><a href="Documentation/TESTING_GUIDE.md">Testing Guide</a></li>
-</ul>
-
+
+
+
 <h2 id="authors-heading">Authors</h2>
 <p>COMP3607 Group 12 - University of the West Indies</p></div>
 <div id="all-packages-table">
@@ -155,3 +168,4 @@ java -jar target/jeopardy-game-1.0-SNAPSHOT.jar
 </div>
 </body>
 </html>
+
