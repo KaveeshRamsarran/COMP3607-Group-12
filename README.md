@@ -101,7 +101,38 @@ mvn exec:java -Dexec.mainClass="com.comp3607.JeopardyApp"
 
 # Clean build artifacts
 mvn clean
+
+# Generate JavaDoc API documentation
+mvn javadoc:javadoc
+# Or use: .\generate-javadoc.ps1
 ```
+
+## 📚 API Documentation
+
+JavaDoc API documentation is available and can be generated locally or published to GitHub Pages.
+
+### Generate Documentation
+```powershell
+# Using PowerShell script (recommended)
+.\generate-javadoc.ps1
+
+# Or using Maven
+mvn javadoc:javadoc
+
+# To view JavaDoc API documentation
+start docs\index.html
+```
+
+### Live API Documentation
+- **[Quick Start Guide](https://kaveeshramsarran.github.io/COMP3607-Group-12/)** - Get started with the API
+- **[Design Patterns](https://kaveeshramsarran.github.io/COMP3607-Group-12/)** - Factory, Singleton, Strategy implementations
+- **[SOLID Principles](https://kaveeshramsarran.github.io/COMP3607-Group-12/)** - Architecture and design
+- **[Testing Guide](https://kaveeshramsarran.github.io/COMP3607-Group-12/)** - Unit tests and coverage
+
+### Documentation Includes
+- **Packages:** Core game logic, parsers (CSV/JSON/XML), strategies, patterns
+- **Classes:** Game, Player, Question, ProcessLog, ReportGenerator, JeopardyApp, JeopardyAppGUI
+- **All Javadoc:** Complete API reference with detailed method documentation
 
 
 
